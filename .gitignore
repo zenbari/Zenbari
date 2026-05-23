@@ -1,0 +1,7 @@
+# OS-specific junk files
+.DS_Store
+Thumbs.db
+
+# Backup and logs
+*.log
+.system_generated/
