@@ -1759,3 +1759,8 @@ footer {
 .stagger-card:nth-child(4) {
     transition-delay: 0.55s;
 }
+.service-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
