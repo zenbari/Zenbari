@@ -162,8 +162,7 @@ function initHeroOrb() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(139, 92, 246, ${this.alpha})`;
-      ctx.fill();
+      ctx.fillStyle = `rgba(139, 92, 246, 1.2`;      ctx.fill();
     }
   }
 
@@ -190,8 +189,8 @@ function initHeroOrb() {
     const radOuter = 160 + pulseOffset;
 
     const radGrad = ctx.createRadialGradient(gradX, gradY, radInner, gradX, gradY, radOuter);
-    radGrad.addColorStop(0, 'rgba(139, 92, 246, 0.4)');
-    radGrad.addColorStop(0.4, 'rgba(6, 182, 212, 0.2)');
+    radGrad.addColorStop(0, 'rgba(139, 92, 246, 0.5)');
+    radGrad.addColorStop(0.4, 'rgba(6, 182, 212, 0.3)');
     radGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
     ctx.beginPath();
@@ -218,7 +217,7 @@ function initHeroOrb() {
         }
       }
     }
-    ctx.strokeStyle = `rgba(6, 182, 212, 0.05)`;
+    ctx.strokeStyle = `rgba(6, 182, 212, 0.19)`;
     ctx.lineWidth = 0.5;
     ctx.stroke();
 
