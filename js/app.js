@@ -611,3 +611,32 @@ function validateEmail(email) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+/* ===== SCROLL REVEAL SYSTEM ===== */
+
+const revealElements = document.querySelectorAll('.reveal');
+const staggerCards = document.querySelectorAll('.stagger-card');
+
+function handleReveal() {
+    const triggerPoint = window.innerHeight * 0.85;
+
+    revealElements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+
+        if (elementTop < triggerPoint) {
+            element.classList.add('active');
+        }
+    });
+
+    staggerCards.forEach((card) => {
+        const cardTop = card.getBoundingClientRect().top;
+
+        if (cardTop < triggerPoint) {
+            card.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', handleReveal);
+
+handleReveal();
