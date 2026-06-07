@@ -106,9 +106,9 @@ a {
 
 .ambient-orb {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.18;
+  border-radius: 60%;
+  filter: blur(190px);
+  opacity: 0.60;
   mix-blend-mode: screen;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -415,26 +415,25 @@ header.scrolled .nav-container {
   align-items: center;
   justify-content: center;
 }
-
-/* Beautiful native canvas visual overlay */
 .spline-placeholder-container {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  overflow: visible;
+  border: 0.5px solid var(--border-color);
   background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, rgba(0,0,0,0) 80%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .glow-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.06);
-  animation: rotate 60s infinite linear;
+  border: 2px dashed rgba(64, 61, 68, 0.429);
+  animation: rotate 2s infinite linear;
+  box-shadow: 0  1px rgba(139,92,246,0.35), 
+              0  1px rgba(139,92,246,0.15);
 }
 
 .ring-outer {
@@ -445,8 +444,7 @@ header.scrolled .nav-container {
 .ring-inner {
   width: 320px;
   height: 320px;
-  animation-duration: 40s;
-  animation-direction: reverse;
+  animation-duration: 10s;
 }
 
 .spline-canvas-fallback {
@@ -1758,11 +1756,6 @@ footer {
 
 .stagger-card:nth-child(4) {
     transition-delay: 0.55s;
-}
-.service-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }
 .service-card-link {
   text-decoration: none;
