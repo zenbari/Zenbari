@@ -1,80 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Google Ads Services | Zenbari Digital Growth</title>
+  <title>Google Ads Services | Zenbari Digital Growth</title>
 
-<meta name="description" content="Google Ads management, search campaigns, performance max campaigns and lead generation services from Zenbari Digital Growth.">
+  <meta name="description" content="Google Ads management from Zenbari Digital Growth — Search, Performance Max, Shopping, Display, YouTube and Remarketing campaigns built to capture customers already searching for your business.">
 
-<link rel="stylesheet" href="css/styles.css">
+  <meta name="keywords" content="Google Ads UK, Search Campaigns, Performance Max, Shopping Ads, Display Advertising, YouTube Ads, Remarketing, PPC Agency">
+
+  <meta property="og:title" content="Google Ads Services | Zenbari Digital Growth">
+  <meta property="og:description" content="Google Ads campaigns built around search intent, precise targeting and continuous optimisation to generate qualified enquiries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.zenbari.co.uk/google-ads.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-<section class="hero-section">
-  <div class="container hero-grid">
-
-    <div class="hero-content">
-
-      <span class="badge">
-        Google Ads Specialist
-      </span>
-
-      <h1 class="hero-title">
-        Google Ads That Generate
-        <span class="gradient-text">Qualified Leads & Sales</span>
-      </h1>
-
-      <p class="hero-description">
-        We build and optimise Google Ads campaigns focused on lead generation, conversion growth and profitable customer acquisition.
-      </p>
-
-    </div>
-
+  <div class="background-canvas-container" aria-hidden="true">
+    <div class="ambient-orb orb-violet"></div>
+    <div class="ambient-orb orb-cyan"></div>
   </div>
-</section>
 
-<section class="services-section">
-  <div class="container">
+  <header>
+    <div class="container nav-container">
 
-    <div class="section-header">
-      <span class="badge">Google Advertising</span>
-      <h2 class="section-title">How We Help</h2>
-      <p class="section-subtitle">
-        Google Ads services designed to maximise return on advertising spend.
-      </p>
-    </div>
+      <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
 
-    <div class="services-grid">
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#strategy" class="nav-link">Strategy</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#book" class="btn btn-secondary" style="padding:10px 20px;font-size:.85rem;">Free Google Ads Audit</a></li>
+        </ul>
+      </nav>
 
-      <div class="glass-card service-card">
-        <h3>Search Campaigns</h3>
-        <p>Capture high-intent customers actively searching for your services.</p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>Performance Max</h3>
-        <p>Expand reach across Google Search, YouTube, Maps, Gmail and Display.</p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>Conversion Tracking</h3>
-        <p>Accurate tracking setup to measure real business outcomes.</p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>Landing Page Optimisation</h3>
-        <p>Improve conversion rates and lower acquisition costs.</p>
-      </div>
+      <button class="burger-menu" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
 
     </div>
+  </header>
 
-  </div>
-</section>
+  <main>
 
-<script src="js/app.js"></script>
+    <!-- HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
 
+        <div class="hero-content">
+
+          <span class="badge">UK Google Ads Specialist</span>
+
+          <h1 class="hero-title">
+            Reach Customers At The Exact Moment
+            <span class="gradient-text">They're Searching For You</span>
+          </h1>
+
+          <p class="hero-description">
+            Zenbari builds and manages Google Ads campaigns that put your business in front of high-intent customers already searching for what you offer — combining precise keyword targeting, disciplined budget management and continuous optimisation to turn search traffic into qualified enquiries.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#book" class="btn btn-primary">Request Free Google Ads Audit</a>
+            <a href="#strategy" class="btn btn-secondary">See Our Strategy</a>
+          </div>
+
+        </div>
+
+        <div class="hero-visual-wrapper" aria-label="Interactive Google Ads visualisation">
+          <div class="spline-placeholder-container">
+            <div class="glow-ring ring-outer"></div>
+            <div class="glow-ring ring-inner"></div>
+            <canvas id="heroOrbCanvas" class="spline-canvas-fallback"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY GOOGLE ADS WORKS -->
+    <section class="about-section" id="why-it-works">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Search Intent</span>
+          <h2 class="section-title">Why Google Ads Works</h2>
+        </div>
+
+        <p style="max-width:800px;margin:0 auto 60px;text-align:center;color:var(--text-secondary);line-height:1.8;">
+          Most advertising interrupts people who weren't looking for you. Google Ads is different — it places your business in front of people at the exact moment they're actively searching for what you offer, with clear buying or research intent already in mind.
+        </p>
+
+        <dl style="max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;">
+
+          <div>
+            <dt style="font-family:var(--font-headings);font-weight:700;font-size:1.1rem;color:var(--text-primary);margin-bottom:10px;">Search Intent</dt>
+            <dd style="color:var(--text-secondary);line-height:1.7;margin:0;">Someone searching "emergency plumber near me" isn't casually browsing — they need a solution now, making search traffic some of the highest-intent traffic available.</dd>
+          </div>
+
+          <div>
+            <dt style="font-family:var(--font-headings);font-weight:700;font-size:1.1rem;color:var(--text-primary);margin-bottom:10px;">Timing Over Interruption</dt>
+            <dd style="color:var(--text-secondary);line-height:1.7;margin:0;">Unlike social advertising, which interrupts people mid-scroll, search advertising meets people at the exact moment they've already decided to look for a solution.</dd>
+          </div>
+
+          <div>
+            <dt style="font-family:var(--font-headings);font-weight:700;font-size:1.1rem;color:var(--text-primary);margin-bottom:10px;">Measurable From Day One</dt>
+            <dd style="color:var(--text-secondary);line-height:1.7;margin:0;">Every click, call and form submission can be tracked back to a specific keyword and campaign, giving a clear view of what's actually driving enquiries.</dd>
+          </div>
+
+        </dl>
+
+      </div>
+    </section>
+
+    <!-- OUR GOOGLE ADS STRATEGY (journey, two-column) -->
+    <section class="process-section" id="strategy">
+      <div class="container process-grid">
+
+        <div class="process-left">
+          <span class="badge">Our Process</span>
+          <h2 class="section-title" style="font-size:2.3rem;margin-bottom:30px;">Our Google Ads Strategy</h2>
+
+          <ol class="process-steps-list" style="list-style:none;padding:0;">
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-color);">
+              <span class="step-number">01</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Business Discovery</h3>
+                <p class="service-description" style="font-size:0.92rem;">We learn your offer, margins, sales process and competitive landscape to understand what a genuinely qualified lead looks like for your business.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-color);">
+              <span class="step-number">02</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Keyword Research</h3>
+                <p class="service-description" style="font-size:0.92rem;">We identify the exact search terms your customers use when they're ready to enquire or buy, filtering out low-intent, irrelevant traffic.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-color);">
+              <span class="step-number">03</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Campaign Planning</h3>
+                <p class="service-description" style="font-size:0.92rem;">We structure campaigns, ad groups and bidding strategy around how your customers actually search, not generic keyword lists.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-color);">
+              <span class="step-number">04</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Ad Copy Creation</h3>
+                <p class="service-description" style="font-size:0.92rem;">We write ad copy that speaks directly to search intent, improving click-through rates and the quality of traffic that lands on your site.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-color);">
+              <span class="step-number">05</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Landing Page Alignment</h3>
+                <p class="service-description" style="font-size:0.92rem;">We ensure every ad points to a page that matches the search, so visitors find what they expected and are more likely to convert.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:20px;align-items:flex-start;padding:16px 0;">
+              <span class="step-number">06</span>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Continuous Optimisation</h3>
+                <p class="service-description" style="font-size:0.92rem;">We monitor search terms, bids and conversions on an ongoing basis, removing waste and reinvesting budget into what's proven to convert.</p>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+
+        <div class="process-right">
+          <div class="glass-card process-visual-card">
+            <div class="process-visual-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <div class="process-visual-content">
+              <h4 style="font-family: var(--font-headings); font-weight: 700;">Precision Over Guesswork</h4>
+              <p style="margin-top: 10px;">Every stage of this framework exists to remove wasted spend — from filtering irrelevant searches at the keyword stage to aligning landing pages with exact search intent. The result is a campaign built around qualified enquiries, not just traffic volume.</p>
+            </div>
+            <div class="process-visual-art" aria-hidden="true">
+              <svg width="100%" height="100%" viewBox="0 0 300 150" fill="none">
+                <path d="M 0 130 C 50 80, 100 120, 150 50 C 200 -20, 250 80, 300 10" stroke="url(#google-ads-grad)" stroke-width="3" fill="none" opacity="0.3"/>
+                <defs>
+                  <linearGradient id="google-ads-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8b5cf6"/>
+                    <stop offset="100%" stop-color="#06b6d4"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GOOGLE ADS SERVICES -->
+    <section class="services-section" id="services">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Google Ads Services</span>
+          <h2 class="section-title">Campaigns Built Around Search Intent</h2>
+          <p class="section-subtitle">
+            Six Google Ads disciplines working together to turn search traffic into qualified business enquiries.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">Search Campaigns</h3>
+            <p class="service-description">
+              Capture high-intent customers at the exact moment they search for your product or service, turning search queries into qualified enquiries.
+            </p>
+            <a href="#book" class="service-cta">Capture Search Demand <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Performance Max Campaigns</h3>
+            <p class="service-description">
+              Extend reach across Search, Display, YouTube, Gmail and Maps from a single campaign, maximising coverage of high-value audiences without manual channel-by-channel management.
+            </p>
+            <a href="#book" class="service-cta">Extend Your Reach <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Shopping Ads</h3>
+            <p class="service-description">
+              Put your products directly in front of shoppers with pricing and imagery visible before they even click, driving qualified traffic ready to purchase.
+            </p>
+            <a href="#book" class="service-cta">Showcase Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Display Advertising</h3>
+            <p class="service-description">
+              Stay visible to potential customers as they browse other websites, reinforcing your brand while they move through their decision-making process.
+            </p>
+            <a href="#book" class="service-cta">Stay Visible <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <h3 class="service-title">YouTube Advertising</h3>
+            <p class="service-description">
+              Reach engaged audiences with video, building awareness and trust with customers who aren't ready to search yet but soon will be.
+            </p>
+            <a href="#book" class="service-cta">Build With Video <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M23 4v6h-6"/>
+                <path d="M1 20v-6h6"/>
+                <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Remarketing Campaigns</h3>
+            <p class="service-description">
+              Re-engage visitors who didn't convert the first time, keeping your business front of mind until they're ready to act.
+            </p>
+            <a href="#book" class="service-cta">Re-Engage Visitors <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDUSTRIES WE HELP -->
+    <section class="case-study-section" id="industries">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Industries</span>
+          <h2 class="section-title">Industries We Help</h2>
+          <p class="section-subtitle">
+            How Google Ads generates qualified enquiries across different business models.
+          </p>
+        </div>
+
+        <div class="case-study-grid">
+
+          <div class="glass-card">
+            <h3>E-Commerce</h3>
+            <ul>
+              <li>Capture shoppers actively searching for specific products, right before they buy.</li>
+              <li>Shopping campaigns showcase pricing and imagery directly in search results.</li>
+              <li>Remarketing recovers abandoned carts and browsing sessions.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Professional Services</h3>
+            <ul>
+              <li>Reach decision-makers searching for solutions to a specific business problem.</li>
+              <li>Search campaigns filter out casual browsers and prioritise genuine enquiries.</li>
+              <li>Landing pages aligned to each service keep conversion rates high.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Healthcare</h3>
+            <ul>
+              <li>Connect with patients searching for specific treatments or providers nearby.</li>
+              <li>Local targeting keeps budget focused on people who can realistically attend.</li>
+              <li>Clear, professional ad copy builds trust before the first contact.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Construction</h3>
+            <ul>
+              <li>Capture high-value enquiries from people actively planning a project.</li>
+              <li>Local and service-area targeting keeps spend focused on realistic jobs.</li>
+              <li>Call tracking shows exactly which campaigns generate genuine quotes.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Hospitality</h3>
+            <ul>
+              <li>Reach travellers and diners actively searching to book, not just browse.</li>
+              <li>Location-based targeting drives footfall from nearby high-intent searches.</li>
+              <li>Seasonal campaign adjustments match real booking demand.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Local Businesses</h3>
+            <ul>
+              <li>Appear in front of nearby customers the moment they search for your service.</li>
+              <li>Call and direction extensions turn searches into immediate enquiries.</li>
+              <li>Budget stays focused on your actual service area, reducing waste.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE ZENBARI (comparison table) -->
+    <section class="about-section" id="why">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Why Zenbari</span>
+          <h2 class="section-title" id="why-heading">Why Choose Zenbari</h2>
+          <p class="section-subtitle">
+            The practical advantages of working with a Google Ads partner focused on business outcomes.
+          </p>
+        </div>
+
+        <div class="glass-card" style="max-width:900px;margin:0 auto;padding:16px 40px;">
+          <div style="overflow-x:auto;">
+            <table aria-labelledby="why-heading" style="width:100%;border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th scope="col" style="text-align:left;padding:16px 12px;font-family:var(--font-headings);color:var(--accent-primary);border-bottom:1px solid var(--border-color);">What You Get</th>
+                  <th scope="col" style="text-align:left;padding:16px 12px;font-family:var(--font-headings);color:var(--accent-primary);border-bottom:1px solid var(--border-color);">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Better Quality Leads</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Campaigns are built around genuine buyer intent, not just traffic volume, so enquiries are more likely to convert into customers.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Reduced Wasted Ad Spend</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Ongoing keyword and audience refinement removes irrelevant searches before they consume your budget.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Transparent Reporting</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">You'll always know what's being spent, what's working, and why decisions are being made — no jargon, no black box.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Continuous Optimisation</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Campaigns are actively managed and refined on an ongoing basis, not launched and left to run unattended.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Long-Term Campaign Improvement</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Performance data compounds over time, allowing each optimisation cycle to build on the last.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);">Business-Focused Strategy</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);">Every decision is measured against real business outcomes — enquiries and sales — not vanity click metrics.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="glass-card faq-item">
+            <h3>How much should I budget for Google Ads?</h3>
+            <p>Budget depends on your industry, competition and objective. We'll review your market during your audit and recommend a realistic starting budget based on genuine search volume and competition, not a generic figure.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How is Google Ads different from SEO?</h3>
+            <p>Google Ads places you at the top of search results immediately and is paid per click, while SEO builds long-term organic visibility over months. Many businesses use both — Ads for immediate visibility, SEO for compounding growth.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How quickly can a campaign go live?</h3>
+            <p>Once strategy, keywords and ad copy are agreed, campaigns can typically launch within a few days. Google's review process for ad approval usually takes 24-48 hours.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Do I need a website to run Google Ads?</h3>
+            <p>Yes, in most cases. Search and Shopping campaigns need a destination page that matches the search intent, though Lead Form extensions can capture enquiries directly within some ad formats.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How do you decide which keywords to target?</h3>
+            <p>We research the exact terms your customers use when they're ready to enquire or buy, prioritising commercial intent over high-volume but low-relevance searches that waste budget.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Can you manage an existing Google Ads account?</h3>
+            <p>Yes. We regularly audit and take over existing accounts, identifying wasted spend and restructuring campaigns to improve lead quality and performance.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA + ENQUIRY FORM -->
+    <section class="cta-section" id="book">
+      <div class="container">
+        <div class="glass-card cta-banner-card">
+          <div class="cta-banner-content">
+            <h2 class="cta-title">Ready To Capture <br><span class="gradient-text">Search Demand?</span></h2>
+            <p class="cta-description">
+              Apply for a free Google Ads audit and get a clear view of the search demand available to your business, before you spend another pound.
+            </p>
+
+            <div class="scheduler-widget">
+              <h3 class="widget-title">Request Your Free Google Ads Audit</h3>
+
+              <form class="scheduler-form" id="bookingForm">
+                <div class="form-group">
+                  <label for="bookingName">Full Name</label>
+                  <input type="text" id="bookingName" class="form-input" placeholder="e.g. Alexander Cole" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="bookingEmail">Business Email</label>
+                  <input type="email" id="bookingEmail" class="form-input" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookingIndustry">Industry</label>
+                    <select id="bookingIndustry" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Industry</option>
+                      <option value="ecommerce">E-Commerce Brand</option>
+                      <option value="saas">SaaS / Tech Startup</option>
+                      <option value="b2b">B2B Professional Services</option>
+                      <option value="personal-brand">Personal Brand</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bookingBudget">Monthly Ad Budget</label>
+                    <select id="bookingBudget" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Budget Range</option>
+                      <option value="sub-1k">Under $1,000 / mo</option>
+                      <option value="mid-scale">$1,000 - $5,000 / mo</option>
+                      <option value="high-scale">$5,000 - $20,000 / mo</option>
+                      <option value="enterprise">$20,000+ / mo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit-btn">Request Free Google Ads Audit</button>
+              </form>
+
+              <div class="success-overlay">
+                <div class="success-icon">&#10004;</div>
+                <h4>Audit Requested!</h4>
+                <p>We're reviewing your business details. One of our senior Google Ads strategists will email you within 24 hours with your audit findings.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
+        <p>Helping businesses grow through SEO, Meta Ads, Google Ads, Website Development and Content Marketing.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com" class="social-btn" aria-label="Zenbari Growth LinkedIn" target="_blank">&#9553;</a>
+          <a href="https://twitter.com" class="social-btn" aria-label="Zenbari Growth Twitter" target="_blank">&#9590;</a>
+          <a href="https://instagram.com" class="social-btn" aria-label="Zenbari Growth Instagram" target="_blank">&#9673;</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul class="footer-links">
+          <li><a href="seo-services.html">SEO</a></li>
+          <li><a href="google-ads.html">Google Ads</a></li>
+          <li><a href="meta-ads.html">Meta Ads</a></li>
+          <li><a href="website-development.html">Website Development</a></li>
+          <li><a href="content-marketing.html">Content Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-box">
+        <h5>Get Started</h5>
+        <p>Ready to grow your business online? Let's build a strategy together.</p>
+        <a href="#book" class="btn btn-primary">Book Consultation</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>&copy; 2026 Zenbari Digital Growth. All Rights Reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
