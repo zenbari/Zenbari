@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Search Optimisation | Zenbari Digital Growth</title>
+
+  <meta name="description" content="AI Search Optimisation services from Zenbari Digital Growth — helping businesses understand Generative Engine Optimisation (GEO) and Answer Engine Optimisation (AEO), and prepare for AI-powered search.">
+
+  <meta name="keywords" content="AI Search Optimisation, Generative Engine Optimisation, GEO, Answer Engine Optimisation, AEO, AI SEO, AI search visibility">
+
+  <meta property="og:title" content="AI Search Optimisation | Zenbari Digital Growth">
+  <meta property="og:description" content="Helping businesses understand and prepare for AI-powered search through clear content structure, entity clarity and ongoing optimisation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.zenbari.co.uk/ai-search-optimisation.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Page-scoped animation styles for the "How Search Is Changing" comparison cards.
+       Kept out of css/styles.css since only this file may be modified for this feature.
+       Opacity/transform only (GPU-friendly); prefers-reduced-motion disables all motion. -->
+  <style>
+    /* Shared build-in-and-hold keyframes: used by Card 2 (AI flow) and Card 3 (chat) */
+    @keyframes aiso-build-in {
+      0%, 100% { opacity: .3; transform: translateY(4px) scale(.96); }
+      12%      { opacity: 1;  transform: translateY(0) scale(1); }
+      88%      { opacity: 1;  transform: translateY(0) scale(1); }
+    }
+
+    /* Restructured composition: AI-Powered is an independent hero panel, not a third card of equal
+       weight. The two small cards live in their own stacked wrapper (.aiso-left-col) so their height
+       is entirely decoupled from the AI card's - the AI card can be taller and wider without forcing
+       the small cards to grow or shrink to match. DOM order stays Past -> Present -> Future, so
+       mobile (which falls back to the shared stylesheet's single-column grid, untouched) stacks
+       correctly with zero extra markup needed for that case. */
+    .aiso-left-col { display: flex; flex-direction: column; gap: 20px; }
+    @media (min-width: 769px) {
+      #shift .about-visual-grid { display: flex; align-items: flex-start; gap: 20px; }
+      #shift .aiso-left-col { flex: 1; }
+      #shift .about-img-wrapper.tall { flex: 1.3; height: 580px; }
+    }
+
+    /* Card 1: Traditional Search - compact top-to-bottom travelling highlight; stays understated */
+    .aiso-journey { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 90px; margin-bottom: 8px; padding-left: 16px; }
+    .aiso-journey-line { position: absolute; left: 3px; top: 8px; bottom: 8px; width: 1px; background: var(--border-color); }
+    .aiso-journey-dot {
+      position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--text-muted);
+      animation: aiso-dot-travel 12s ease-in-out infinite;
+    }
+    @keyframes aiso-dot-travel {
+      0%   { opacity: 0; transform: translateY(0); }
+      4%   { opacity: .85; transform: translateY(0); }
+      38%  { opacity: .85; transform: translateY(65px); }
+      44%  { opacity: 0; transform: translateY(65px); }
+      100% { opacity: 0; transform: translateY(0); }
+    }
+    .aiso-journey-row { display: flex; align-items: center; gap: 8px; transform-origin: left center; animation: aiso-row-pulse 12s ease-in-out infinite; }
+    @keyframes aiso-row-pulse {
+      0%, 100% { opacity: .68; transform: scale(1); }
+      10%      { opacity: .95; transform: scale(1.02); }
+      20%      { opacity: .68; transform: scale(1); }
+    }
+    .aiso-node { width: 7px; height: 7px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
+    .aiso-node-label {
+      font-size: .68rem; font-weight: 600; font-family: var(--font-headings); color: var(--text-secondary);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border-color);
+      padding: 4px 10px; border-radius: 6px;
+    }
+
+    /* Card 2: AI-Powered Search (the focal card) - sources feed into a glowing AI step, then a summary.
+       Compact by default; the desktop-only override below gives it room to breathe in the tall card. */
+    .aiso-flow { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-bottom: 8px; }
+    .aiso-flow-sources { display: flex; gap: 6px; }
+    .aiso-chip, .aiso-flow-ai, .aiso-flow-summary {
+      font-size: .64rem; font-weight: 600; font-family: var(--font-headings);
+      padding: 3px 9px; border-radius: 7px;
+      background: rgba(255,255,255,.06); border: 1px solid var(--border-color); color: var(--text-primary);
+      animation: aiso-build-in 12s ease-in-out infinite;
+    }
+    .aiso-flow-ai {
+      background: rgba(var(--accent-primary-rgb), .22); border-color: rgba(var(--accent-primary-rgb), .45);
+      box-shadow: 0 0 12px rgba(var(--accent-primary-rgb), .3);
+    }
+    .aiso-flow-summary {
+      background: rgba(var(--accent-secondary-rgb), .18); border-color: rgba(var(--accent-secondary-rgb), .4);
+      box-shadow: 0 0 12px rgba(var(--accent-secondary-rgb), .25);
+    }
+    .aiso-flow-arrow { font-size: .6rem; color: var(--text-muted); line-height: 1; }
+    .aiso-flow-caption {
+      display: none; font-size: .72rem; color: var(--text-muted); font-weight: 500;
+      animation: aiso-build-in 12s ease-in-out infinite;
+    }
+    /* Desktop: the AI card is now taller (580px, see .about-img-wrapper.tall above), so give the
+       existing flow diagram more breathing room to use that space - same steps, same colours,
+       just more generously spaced. */
+    @media (min-width: 769px) {
+      .aiso-flow { gap: 22px; margin-bottom: 28px; }
+      .aiso-flow-sources { gap: 12px; }
+      .aiso-chip, .aiso-flow-ai, .aiso-flow-summary { font-size: .95rem; padding: 10px 20px; }
+      .aiso-flow-arrow { font-size: .9rem; }
+      .aiso-flow-ai { box-shadow: 0 0 18px rgba(var(--accent-primary-rgb), .32); }
+      .aiso-flow-summary { box-shadow: 0 0 18px rgba(var(--accent-secondary-rgb), .28); }
+      .aiso-flow-caption { display: block; }
+    }
+
+    /* Card 3: Conversational Search (the present) - alternating chat bubbles with a speech-bubble tail */
+    .aiso-chat { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+    .aiso-bubble {
+      max-width: 80%; padding: 3px 9px; font-size: .62rem; line-height: 1.3;
+      animation: aiso-build-in 12s ease-in-out infinite;
+    }
+    .aiso-bubble-user { align-self: flex-end; background: rgba(var(--accent-secondary-rgb), .16); border: 1px solid rgba(var(--accent-secondary-rgb), .3); border-radius: 11px 11px 3px 11px; }
+    .aiso-bubble-ai { align-self: flex-start; background: rgba(255,255,255,.06); border: 1px solid var(--border-color); border-radius: 11px 11px 11px 3px; }
+
+    /* Respect reduced-motion: show the complete, static diagram instead of animating it */
+    @media (prefers-reduced-motion: reduce) {
+      .aiso-journey-row, .aiso-chip, .aiso-flow-ai, .aiso-flow-summary, .aiso-flow-caption, .aiso-bubble {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .aiso-journey-dot { animation: none !important; opacity: 0 !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background-canvas-container" aria-hidden="true">
+    <div class="ambient-orb orb-violet"></div>
+    <div class="ambient-orb orb-cyan"></div>
+  </div>
+
+  <header>
+    <div class="container nav-container">
+
+      <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#framework" class="nav-link">Framework</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#book" class="btn btn-secondary" style="padding:10px 20px;font-size:.85rem;">Get an AI Visibility Audit</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger-menu" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+
+          <span class="badge">AI Search Readiness</span>
+
+          <h1 class="hero-title">
+            Prepare Your Business For The
+            <span class="gradient-text">Next Era of Search</span>
+          </h1>
+
+          <p class="hero-description">
+            As AI-powered search experiences become part of how people research, compare and buy, businesses need to be structured for both traditional search engines and generative AI tools. Zenbari helps you understand what AI Search Optimisation means in practice, and prepares your content and website to be accurately represented as search continues to evolve.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#book" class="btn btn-primary">Request an AI Visibility Audit</a>
+            <a href="#what-is-aiso" class="btn btn-secondary">Understand AI Search</a>
+          </div>
+
+        </div>
+
+        <div class="hero-visual-wrapper" aria-label="Interactive AI search visualisation">
+          <div class="spline-placeholder-container">
+            <div class="glow-ring ring-outer"></div>
+            <div class="glow-ring ring-inner"></div>
+            <canvas id="heroOrbCanvas" class="spline-canvas-fallback"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW SEARCH IS CHANGING -->
+    <section class="about-section" id="shift">
+      <div class="container about-grid">
+
+        <div class="about-editorial-text">
+          <span class="badge">The Shift</span>
+          <h2 class="section-title" style="font-size:2.3rem;margin-bottom:24px;">How Search Is Changing</h2>
+          <p>
+            For years, searching online meant typing a query and scrolling through a list of blue links. That's changing. AI-powered search experiences increasingly generate direct answers, summarising information from across the web rather than simply listing where to find it.
+          </p>
+          <p>
+            This doesn't mean traditional search is disappearing — most people still use it every day. But a growing share of research and buying journeys now happen through AI assistants and AI-generated answers, which read and interpret content differently to a traditional search engine.
+          </p>
+        </div>
+
+        <div class="about-visual-grid">
+          <div class="aiso-left-col">
+            <!-- Past: compact, understated -->
+            <div class="about-img-wrapper">
+              <div class="img-overlay">
+                <div class="aiso-journey" aria-hidden="true">
+                  <div class="aiso-journey-line"></div>
+                  <div class="aiso-journey-dot"></div>
+                  <div class="aiso-journey-row">
+                    <span class="aiso-node"></span>
+                    <span class="aiso-node-label">Search</span>
+                  </div>
+                  <div class="aiso-journey-row" style="animation-delay:1.5s;">
+                    <span class="aiso-node"></span>
+                    <span class="aiso-node-label">Results</span>
+                  </div>
+                  <div class="aiso-journey-row" style="animation-delay:3s;">
+                    <span class="aiso-node"></span>
+                    <span class="aiso-node-label">Website</span>
+                  </div>
+                </div>
+                <span class="badge" style="font-size:.58rem;padding:2px 9px;margin-bottom:6px;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:var(--text-muted);">Past</span>
+                <div class="overlay-title">Traditional Search</div>
+                <div class="overlay-subtitle">Type a query and browse links.</div>
+              </div>
+              <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1c1c22, #0a0a0a);"></div>
+            </div>
+
+            <!-- Present: engaging, but supporting -->
+            <div class="about-img-wrapper">
+              <div class="img-overlay">
+                <div class="aiso-chat" aria-hidden="true">
+                  <div class="aiso-bubble aiso-bubble-user">How do I start?</div>
+                  <div class="aiso-bubble aiso-bubble-ai" style="animation-delay:1.2s;">Here's a simple answer.</div>
+                  <div class="aiso-bubble aiso-bubble-user" style="animation-delay:2.3s;">And after that?</div>
+                  <div class="aiso-bubble aiso-bubble-ai" style="animation-delay:3.4s;">A quick follow-up.</div>
+                </div>
+                <span class="badge" style="font-size:.58rem;padding:2px 9px;margin-bottom:6px;background:rgba(var(--accent-secondary-rgb),.1);border-color:rgba(var(--accent-secondary-rgb),.28);color:var(--accent-secondary);">Present</span>
+                <div class="overlay-title">Conversational Search</div>
+                <div class="overlay-subtitle">Ask naturally, get a reply.</div>
+              </div>
+              <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #111116, #182430);"></div>
+            </div>
+          </div>
+
+          <!-- Future: the dominant, focal card -->
+          <div class="about-img-wrapper tall" style="border-color:rgba(var(--accent-primary-rgb),.25);">
+            <div class="img-overlay">
+              <div class="aiso-flow" aria-hidden="true">
+                <div class="aiso-flow-sources">
+                  <span class="aiso-chip">Site A</span>
+                  <span class="aiso-chip" style="animation-delay:.5s;">Site B</span>
+                  <span class="aiso-chip" style="animation-delay:1s;">Site C</span>
+                </div>
+                <span class="aiso-flow-caption" style="animation-delay:1s;">Multiple sources</span>
+                <span class="aiso-flow-arrow">&darr;</span>
+                <div class="aiso-flow-ai" style="animation-delay:2s;">AI</div>
+                <span class="aiso-flow-arrow">&darr;</span>
+                <div class="aiso-flow-summary" style="animation-delay:3.3s;">Summary</div>
+                <span class="aiso-flow-caption" style="animation-delay:3.3s;">One clear, synthesised answer</span>
+              </div>
+              <span class="badge">Future</span>
+              <div class="overlay-title gradient-text">AI-Powered Search</div>
+              <div class="overlay-subtitle">AI reads multiple sources at once and responds with one clear, synthesised answer.</div>
+            </div>
+            <div style="width: 100%; height: 100%; background: linear-gradient(225deg, #241c3a, #0d0a18);"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHAT IS AI SEARCH OPTIMISATION? (GEO & AEO) -->
+    <section class="why-us-section" id="what-is-aiso">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Plain English</span>
+          <h2 class="section-title">What Is AI Search Optimisation?</h2>
+          <p class="section-subtitle">
+            AI Search Optimisation is the practice of structuring your website and content so AI-powered tools can understand, trust and accurately represent your business. It sits alongside traditional SEO rather than replacing it, and is usually discussed using two terms.
+          </p>
+        </div>
+
+        <div class="why-grid">
+
+          <div class="glass-card" style="padding:40px;">
+            <div class="gradient-text" style="font-family:var(--font-headings);font-weight:800;font-size:2.75rem;line-height:1;">GEO</div>
+            <h3 class="service-title" style="font-size:1.05rem;margin:14px 0 12px;color:var(--text-secondary);font-weight:600;">Generative Engine Optimisation</h3>
+            <p class="service-description">
+              The practice of structuring content so AI tools that generate written answers — summarising information from multiple sources — can accurately understand and reference your business when forming a response.
+            </p>
+          </div>
+
+          <div class="glass-card" style="padding:40px;">
+            <div class="gradient-text" style="font-family:var(--font-headings);font-weight:800;font-size:2.75rem;line-height:1;">AEO</div>
+            <h3 class="service-title" style="font-size:1.05rem;margin:14px 0 12px;color:var(--text-secondary);font-weight:600;">Answer Engine Optimisation</h3>
+            <p class="service-description">
+              The practice of structuring content so it can be easily extracted as a direct answer to a specific question, whether that question is typed into a search bar or spoken to a voice assistant.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OUR AI VISIBILITY FRAMEWORK -->
+    <section class="process-section" id="framework">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Framework</span>
+          <h2 class="section-title">Our AI Visibility Framework</h2>
+          <p class="section-subtitle">
+            A structured, six-stage approach to preparing your website and content for AI-powered search.
+          </p>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:50px;">
+          <span class="badge">Website Audit</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="color:var(--text-muted);flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="badge">Content Structure</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="color:var(--text-muted);flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="badge">Entity Optimisation</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="color:var(--text-muted);flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="badge">AI-Friendly Content</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="color:var(--text-muted);flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="badge">Authority Development</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="color:var(--text-muted);flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="badge">Continuous Improvement</span>
+        </div>
+
+        <ol style="list-style:none;padding:0;margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;">
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">01</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">Website Audit</h3>
+            <p class="service-description" style="font-size:0.92rem;">We assess how your website and content currently appear to both traditional search engines and AI-powered tools, identifying gaps in structure and clarity.</p>
+          </li>
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">02</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">Content Structure</h3>
+            <p class="service-description" style="font-size:0.92rem;">We organise your content with clear headings, structured data and logical hierarchy, making it easier for AI systems to interpret accurately.</p>
+          </li>
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">03</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">Entity Optimisation</h3>
+            <p class="service-description" style="font-size:0.92rem;">We clarify who you are, what you do and how your business relates to relevant topics, helping AI tools understand your business correctly.</p>
+          </li>
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">04</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">AI-Friendly Content</h3>
+            <p class="service-description" style="font-size:0.92rem;">We refine content so key facts, answers and value propositions are stated clearly, rather than buried in marketing language.</p>
+          </li>
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">05</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">Authority Development</h3>
+            <p class="service-description" style="font-size:0.92rem;">We strengthen the signals that help AI systems trust your content as a reliable source, alongside your existing SEO efforts.</p>
+          </li>
+
+          <li style="padding-top:20px;border-top:2px solid var(--accent-primary);">
+            <span class="step-number">06</span>
+            <h3 class="service-title" style="font-size:1.1rem;margin:12px 0 10px;">Continuous Improvement</h3>
+            <p class="service-description" style="font-size:0.92rem;">We monitor how AI search experiences reference your business and refine your content as these tools and their behaviour continue to evolve.</p>
+          </li>
+
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- OUR SERVICES -->
+    <section class="services-section" id="services">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Services</span>
+          <h2 class="section-title">Preparing Your Business For AI Search</h2>
+          <p class="section-subtitle">
+            Six focused services that help your business stay accurately visible as search continues to evolve.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Search Optimisation</h3>
+            <p class="service-description">
+              A complete review of how your business is structured for AI-powered search, so you understand where you stand and what to prioritise first.
+            </p>
+            <a href="#book" class="service-cta">Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Generative Engine Optimisation (GEO)</h3>
+            <p class="service-description">
+              Structure your content so AI tools that generate summarised answers can accurately understand and reference your business.
+            </p>
+            <a href="#book" class="service-cta">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Answer Engine Optimisation (AEO)</h3>
+            <p class="service-description">
+              Structure content so it can be extracted as a clear, direct answer to the specific questions your customers are asking.
+            </p>
+            <a href="#book" class="service-cta">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Content Strategy</h3>
+            <p class="service-description">
+              Plan content that serves real customer questions clearly, so it performs well for readers, traditional search and AI tools alike.
+            </p>
+            <a href="#book" class="service-cta">Plan Your Content <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Structured Content Optimisation</h3>
+            <p class="service-description">
+              Improve headings, page structure and structured data so both search engines and AI tools can accurately parse your content.
+            </p>
+            <a href="#book" class="service-cta">Improve Structure <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Visibility Audits</h3>
+            <p class="service-description">
+              A clear, honest assessment of how your business currently appears — or doesn't — across AI-powered search experiences.
+            </p>
+            <a href="#book" class="service-cta">Request an Audit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY BUSINESSES SHOULD PREPARE NOW -->
+    <section class="about-section" id="prepare-now">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Why Now</span>
+          <h2 class="section-title">Why Businesses Should Prepare Now</h2>
+          <p class="section-subtitle">
+            AI search is still developing, which makes this the right time to build good foundations — not a reason to panic.
+          </p>
+        </div>
+
+        <div class="about-stats" style="max-width:900px;margin:0 auto;">
+
+          <div class="stat-item">
+            <div class="stat-number" style="font-size:1.3rem;">Future Readiness</div>
+            <p class="stat-label">AI-powered search is becoming part of how people research and buy. Preparing your content now means you're positioned for this shift rather than reacting to it later.</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" style="font-size:1.3rem;">Improved Discoverability</div>
+            <p class="stat-label">The structure and clarity that helps AI systems understand your business also improves how easily customers and traditional search engines find you.</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" style="font-size:1.3rem;">Better Customer Experience</div>
+            <p class="stat-label">Clear, well-structured content answers customer questions faster and more accurately, whether they're reading your website or asking an AI assistant.</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" style="font-size:1.3rem;">Staying Competitive</div>
+            <p class="stat-label">Businesses that adapt their content and structure early are better placed to remain visible as more of the buying journey moves through AI-powered tools.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDUSTRIES WE HELP -->
+    <section class="services-section" id="industries">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Industries</span>
+          <h2 class="section-title">Industries We Help</h2>
+          <p class="section-subtitle">
+            How AI Search Optimisation applies to different business models.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </div>
+            <h3 class="service-title">E-Commerce</h3>
+            <p class="service-description">
+              Product and brand information structured so AI shopping assistants and generative search results can accurately describe and recommend your products.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Professional Services</h3>
+            <p class="service-description">
+              Clear service descriptions and credentials structured so AI-generated answers can accurately represent your expertise to potential clients.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Healthcare</h3>
+            <p class="service-description">
+              Accurate, well-structured information about services and specialisms helps AI search experiences represent your practice correctly to patients researching care.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Construction</h3>
+            <p class="service-description">
+              Clear project types, service areas and credentials structured so your business is accurately represented when people research contractors through AI-powered search.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Hospitality</h3>
+            <p class="service-description">
+              Structured information about your venue, offering and location helps AI search experiences accurately answer questions from people planning a visit or booking.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Education</h3>
+            <p class="service-description">
+              Clear, well-structured course and institutional information helps prospective students find accurate answers through AI-powered research tools.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="service-title">Local Businesses</h3>
+            <p class="service-description">
+              Accurate, structured local information helps AI-powered search experiences correctly represent your business to nearby customers researching options.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="glass-card faq-item">
+            <h3>What is AI Search Optimisation?</h3>
+            <p>AI Search Optimisation is the practice of structuring your website and content so AI-powered search tools can understand, trust and accurately represent your business, alongside your existing SEO work.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>What is GEO?</h3>
+            <p>GEO stands for Generative Engine Optimisation — structuring content so AI tools that generate summarised answers from multiple sources can accurately understand and reference your business.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>What is AEO?</h3>
+            <p>AEO stands for Answer Engine Optimisation — structuring content so it can be easily extracted as a direct answer to a specific question, whether typed or spoken to a voice assistant.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How is this different from SEO?</h3>
+            <p>Traditional SEO focuses on ranking in a list of search results. AI Search Optimisation focuses on how your content is understood, summarised and referenced within AI-generated answers. The two work together rather than replacing one another.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Does AI Search replace Google?</h3>
+            <p>No. Traditional search engines remain a major part of how people find information online. AI-powered search experiences are growing alongside them, which is why businesses benefit from being prepared for both.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Is this suitable for small businesses?</h3>
+            <p>Yes. The foundations of AI Search Optimisation — clear content, accurate information and good structure — benefit businesses of any size, and are often more achievable for smaller, focused websites.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA + ENQUIRY FORM -->
+    <section class="cta-section" id="book">
+      <div class="container">
+        <div class="glass-card cta-banner-card">
+          <div class="cta-banner-content">
+            <h2 class="cta-title">Ready To Prepare For <br><span class="gradient-text">AI Search?</span></h2>
+            <p class="cta-description">
+              Request a free AI visibility audit and get a clear, honest view of how your business currently appears across AI-powered search experiences.
+            </p>
+
+            <div class="scheduler-widget">
+              <h3 class="widget-title">Request Your Free AI Visibility Audit</h3>
+
+              <form class="scheduler-form" id="bookingForm">
+                <div class="form-group">
+                  <label for="bookingName">Full Name</label>
+                  <input type="text" id="bookingName" class="form-input" placeholder="e.g. Alexander Cole" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="bookingEmail">Business Email</label>
+                  <input type="email" id="bookingEmail" class="form-input" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookingIndustry">Industry</label>
+                    <select id="bookingIndustry" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Industry</option>
+                      <option value="ecommerce">E-Commerce Brand</option>
+                      <option value="saas">SaaS / Tech Startup</option>
+                      <option value="b2b">B2B Professional Services</option>
+                      <option value="personal-brand">Personal Brand</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bookingBudget">Monthly Marketing Budget</label>
+                    <select id="bookingBudget" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Budget Range</option>
+                      <option value="sub-1k">Under $1,000 / mo</option>
+                      <option value="mid-scale">$1,000 - $5,000 / mo</option>
+                      <option value="high-scale">$5,000 - $20,000 / mo</option>
+                      <option value="enterprise">$20,000+ / mo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit-btn">Request Free AI Visibility Audit</button>
+              </form>
+
+              <div class="success-overlay">
+                <div class="success-icon">&#10004;</div>
+                <h4>Audit Requested!</h4>
+                <p>We're reviewing your business details. One of our senior strategists will email you within 24 hours with your AI visibility findings.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
+        <p>Helping businesses grow through SEO, Meta Ads, Google Ads, Website Development and Content Marketing.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com" class="social-btn" aria-label="Zenbari Growth LinkedIn" target="_blank">&#9553;</a>
+          <a href="https://twitter.com" class="social-btn" aria-label="Zenbari Growth Twitter" target="_blank">&#9590;</a>
+          <a href="https://instagram.com" class="social-btn" aria-label="Zenbari Growth Instagram" target="_blank">&#9673;</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul class="footer-links">
+          <li><a href="seo-services.html">SEO</a></li>
+          <li><a href="google-ads.html">Google Ads</a></li>
+          <li><a href="meta-ads.html">Meta Ads</a></li>
+          <li><a href="website-development.html">Website Development</a></li>
+          <li><a href="content-marketing.html">Content Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-box">
+        <h5>Get Started</h5>
+        <p>Ready to grow your business online? Let's build a strategy together.</p>
+        <a href="#book" class="btn btn-primary">Book Consultation</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>&copy; 2026 Zenbari Digital Growth. All Rights Reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
