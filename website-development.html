@@ -6,215 +6,933 @@
 
   <title>Website Development | Zenbari Digital Growth</title>
 
-  <meta name="description" content="Custom business websites designed for speed, performance, SEO readiness and long-term growth by Zenbari Digital Growth.">
+  <meta name="description" content="Business websites from Zenbari Digital Growth, built to generate enquiries, build trust and support marketing — fast, hand-coded and engineered for growth, not just good looks.">
+
+  <meta name="keywords" content="website development, business website, lead generation website, conversion focused web design, fast websites, SEO ready website, AI search ready website">
+
+  <meta property="og:title" content="Website Development | Zenbari Digital Growth">
+  <meta property="og:description" content="Websites built as business growth assets — fast, trustworthy and designed to turn visitors into enquiries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.zenbari.co.uk/website-development.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Page-scoped styles for this page's two bespoke visuals: the hero "evolving browser window"
+       and the vertical framework timeline. Kept out of css/styles.css since only this file may be
+       modified for this page. Hero animation is opacity/transform only (GPU-friendly) and respects
+       prefers-reduced-motion; the timeline is static (no animation at all). -->
+  <style>
+    /* ---------- HERO: a real (if small) business website building itself section by section, then
+       holding fully-built before resetting. Same browser chrome/colours/footprint/position as before -
+       the content inside is now genuine mini-website copy (real nav labels, a real headline, a real
+       CTA, real feature labels) rather than abstract wireframe bars, and the ending is three distinct
+       beats (SEO Ready -> Performance -> Live) rather than one combined row.
+       Each of the 8 groups below shares one 12s cycle: rises in at its own moment (0-66%, landing the
+       last piece around 8s), then ALL hold together fully visible (~2.9s pause), then ALL fade out
+       together at 88%-100% before the loop restarts - genuinely synchronised, not independent
+       cross-fades. Opacity + transform only; see reduced-motion below for the static fallback. ---------- */
+    .wdev-browser {
+      width: 100%; max-width: 460px; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border-color); background: var(--bg-tertiary);
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+      transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .5s ease;
+    }
+    /* Hover: a slight lift + gentle tilt + soft glow - a state transition, not a looping animation */
+    .wdev-browser:hover {
+      transform: perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
+      box-shadow: 0 35px 70px rgba(0,0,0,.4), 0 0 46px rgba(var(--accent-primary-rgb), .18);
+    }
+    .wdev-browser:hover .wdev-cta-btn {
+      transform: scale(1.06);
+      box-shadow: 0 0 16px rgba(var(--accent-primary-rgb), .45);
+    }
+    .wdev-browser:hover .wdev-live-dot { animation: wdev-pulse-once .7s ease; }
+    @keyframes wdev-pulse-once { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.7); } }
+
+    .wdev-browser-bar {
+      display: flex; align-items: center; gap: 6px; padding: 12px 14px;
+      background: rgba(255,255,255,.03); border-bottom: 1px solid var(--border-color);
+    }
+    .wdev-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); opacity: .5; }
+    .wdev-url {
+      margin-left: 10px; flex: 1; font-size: .68rem; color: var(--text-muted);
+      background: rgba(255,255,255,.04); padding: 4px 10px; border-radius: 6px;
+    }
+    .wdev-browser-body { position: relative; height: 280px; padding: 26px; }
+
+    .wdev-site-nav { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); }
+    .wdev-nav-left { display: flex; align-items: center; gap: 10px; }
+    .wdev-nav-logo { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-gradient); flex-shrink: 0; }
+    .wdev-nav-link { font-family: var(--font-headings); font-size: .58rem; font-weight: 500; color: var(--text-secondary); }
+    .wdev-nav-cta {
+      font-family: var(--font-headings); font-size: .55rem; font-weight: 600; color: #fff;
+      background: rgba(var(--accent-primary-rgb), .55); padding: 3px 9px; border-radius: 8px;
+    }
+
+    .wdev-headline { margin-top: 11px; }
+    .wdev-heading-line {
+      font-family: var(--font-headings); font-weight: 800; font-size: .82rem; line-height: 1.2;
+      color: var(--text-primary); letter-spacing: -.01em; margin-bottom: 4px;
+    }
+    .wdev-sub-line { font-size: .55rem; color: var(--text-secondary); line-height: 1.3; }
+
+    /* Split into wrap (carries the entrance animation) + btn (carries the hover transform) -
+       an element can't have its transform driven by both a looping @keyframes animation and a
+       :hover rule at once, since animations take precedence over normal-priority rules for the
+       same property. Keeping them on separate elements avoids that conflict entirely. */
+    .wdev-cta-wrap { margin-top: 8px; }
+    .wdev-cta-btn {
+      display: inline-block; font-family: var(--font-headings); font-weight: 600;
+      font-size: .58rem; color: #fff; background: var(--accent-gradient);
+      padding: 6px 14px; border-radius: 6px; transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .wdev-content-row { margin-top: 11px; display: flex; gap: 12px; align-items: flex-start; }
+    .wdev-content-text { flex: 1; }
+    .wdev-content-text p { font-size: .52rem; color: var(--text-secondary); line-height: 1.55; }
+    .wdev-image-placeholder {
+      width: 46px; height: 46px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(var(--accent-primary-rgb),.28), rgba(var(--accent-secondary-rgb),.22));
+      display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55);
+    }
+
+    .wdev-features-row { margin-top: 10px; display: flex; gap: 6px; }
+    .wdev-feature-card { flex: 1; padding: 5px 7px; border-radius: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border-color); }
+    .wdev-feature-icon { width: 7px; height: 7px; border-radius: 2px; background: rgba(var(--accent-primary-rgb), .55); margin-bottom: 4px; }
+    .wdev-feature-label { font-family: var(--font-headings); font-size: .5rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+
+    .wdev-status-row { margin-top: 8px; display: flex; gap: 6px; }
+    .wdev-seo-badge, .wdev-perf-badge, .wdev-live-badge {
+      display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-headings);
+      font-size: .52rem; font-weight: 600; padding: 3px 8px; border-radius: 12px;
+    }
+    .wdev-seo-badge { background: rgba(var(--accent-secondary-rgb), .12); border: 1px solid rgba(var(--accent-secondary-rgb), .3); color: var(--accent-secondary); }
+    .wdev-perf-badge { background: rgba(var(--accent-primary-rgb), .12); border: 1px solid rgba(var(--accent-primary-rgb), .3); color: var(--accent-primary); }
+    .wdev-live-badge { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); color: #10b981; }
+    .wdev-live-dot { width: 5px; height: 5px; border-radius: 50%; background: #10b981; }
+
+    .wdev-site-nav    { animation: wdev-el-1 12s ease-in-out infinite; }
+    .wdev-headline    { animation: wdev-el-2 12s ease-in-out infinite; }
+    .wdev-cta-wrap    { animation: wdev-el-3 12s ease-in-out infinite; }
+    .wdev-content-row { animation: wdev-el-4 12s ease-in-out infinite; }
+    .wdev-features-row{ animation: wdev-el-5 12s ease-in-out infinite; }
+    .wdev-seo-badge   { animation: wdev-el-6 12s ease-in-out infinite; }
+    .wdev-perf-badge  { animation: wdev-el-7 12s ease-in-out infinite; }
+    .wdev-live-badge  { animation: wdev-el-8 12s ease-in-out infinite; }
+
+    @keyframes wdev-el-1 { 0%      { opacity: 0; transform: translateY(6px); } 5%, 88%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-2 { 0%, 9%  { opacity: 0; transform: translateY(6px); } 14%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-3 { 0%, 18% { opacity: 0; transform: translateY(6px); } 23%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-4 { 0%, 27% { opacity: 0; transform: translateY(6px); } 32%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-5 { 0%, 36% { opacity: 0; transform: translateY(6px); } 41%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-6 { 0%, 45% { opacity: 0; transform: translateY(6px); } 50%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-7 { 0%, 54% { opacity: 0; transform: translateY(6px); } 59%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+    @keyframes wdev-el-8 { 0%, 61% { opacity: 0; transform: translateY(6px); } 66%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(6px); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wdev-site-nav, .wdev-headline, .wdev-cta-wrap, .wdev-content-row, .wdev-features-row,
+      .wdev-seo-badge, .wdev-perf-badge, .wdev-live-badge {
+        animation: none !important; opacity: 1 !important; transform: none !important;
+      }
+      .wdev-browser:hover { transform: none; }
+      .wdev-browser:hover .wdev-live-dot { animation: none !important; }
+    }
+
+    /* ---------- FRAMEWORK: vertical connected timeline (static, no animation) ---------- */
+    .wdev-timeline { list-style: none; padding: 0; margin: 60px auto 0; max-width: 760px; position: relative; }
+    .wdev-timeline::before {
+      content: ''; position: absolute; left: 19px; top: 6px; bottom: 6px; width: 1px; background: var(--border-color);
+    }
+    .wdev-timeline-item { position: relative; display: flex; gap: 24px; padding-bottom: 36px; }
+    .wdev-timeline-item:last-child { padding-bottom: 0; }
+    .wdev-timeline-num {
+      position: relative; z-index: 1; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-headings); font-weight: 700; font-size: .85rem; color: var(--accent-primary);
+    }
+    .wdev-timeline-body h3 { font-size: 1.15rem; margin-bottom: 8px; font-family: var(--font-headings); font-weight: 700; }
+    .wdev-timeline-body p { color: var(--text-secondary); font-size: .95rem; line-height: 1.7; }
+  </style>
 </head>
+
 <body>
 
-<!-- WEBSITE DEVELOPMENT PAGE -->
-
-<section class="hero-section">
-  <div class="container hero-grid">
-
-    <div class="hero-content">
-
-      <span class="badge">
-        UK Website Development
-      </span>
-
-      <h1 class="hero-title">
-        Website Development That Helps Businesses
-        <span class="gradient-text">Grow Faster Online</span>
-      </h1>
-
-      <p class="hero-description">
-        I build modern, responsive and high-performing websites designed to attract customers, generate leads and support long-term business growth.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="#quote" class="btn btn-primary">
-          Request Website Quote
-        </a>
-
-        <a href="#services" class="btn btn-secondary">
-          View Services
-        </a>
-      </div>
-
-    </div>
-
+  <div class="background-canvas-container" aria-hidden="true">
+    <div class="ambient-orb orb-violet"></div>
+    <div class="ambient-orb orb-cyan"></div>
   </div>
-</section>
 
+  <header>
+    <div class="container nav-container">
 
-<section class="services-section" id="services">
-  <div class="container">
+      <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
 
-    <div class="section-header">
-      <span class="badge">Website Development</span>
-      <h2 class="section-title">What I Build</h2>
-      <p class="section-subtitle">
-        Professional websites designed for performance, user experience and business growth.
-      </p>
-    </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#framework" class="nav-link">Framework</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#book" class="btn btn-secondary" style="padding:10px 20px;font-size:.85rem;">Book a Strategy Session</a></li>
+        </ul>
+      </nav>
 
-    <div class="services-grid">
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Business Websites</h3>
-        <p class="service-description">
-          Modern websites that represent your brand and convert visitors into customers.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Landing Pages</h3>
-        <p class="service-description">
-          High-converting landing pages built for advertising campaigns and lead generation.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Responsive Design</h3>
-        <p class="service-description">
-          Websites that look and perform perfectly across desktop, tablet and mobile devices.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Performance Optimisation</h3>
-        <p class="service-description">
-          Fast-loading websites designed to deliver an excellent user experience.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">SEO-Ready Development</h3>
-        <p class="service-description">
-          Websites built with clean code and a structure that supports search visibility.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Website Maintenance</h3>
-        <p class="service-description">
-          Ongoing updates, improvements and technical support to keep your website performing.
-        </p>
-      </div>
+      <button class="burger-menu" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
 
     </div>
+  </header>
 
-  </div>
-</section>
+  <main>
 
+    <!-- HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
 
-<section class="process-section">
-  <div class="container">
+        <div class="hero-content">
 
-    <div class="section-header">
-      <span class="badge">Process</span>
-      <h2 class="section-title">My Website Development Process</h2>
-    </div>
+          <span class="badge">More Than A Website</span>
 
-    <div class="services-grid">
+          <h1 class="hero-title">
+            Your Website Isn't A Brochure —
+            <span class="gradient-text">It's Your Best Salesperson</span>
+          </h1>
 
-      <div class="glass-card service-card">
-        <h3>1. Discovery</h3>
-        <p class="service-description">
-          Understand your business goals, audience and website requirements.
-        </p>
-      </div>
+          <p class="hero-description">
+            A well-built website works around the clock — building trust, answering questions, generating enquiries and turning visitors into customers. Zenbari designs and builds fast, conversion-focused websites engineered as genuine business growth assets, not just digital brochures.
+          </p>
 
-      <div class="glass-card service-card">
-        <h3>2. Planning</h3>
-        <p class="service-description">
-          Create the structure, layout and user journey before development begins.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>3. Development</h3>
-        <p class="service-description">
-          Build a responsive, fast and scalable website using modern technologies.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>4. Launch</h3>
-        <p class="service-description">
-          Test, refine and launch your website ready for real visitors.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="about-section">
-  <div class="container">
-
-    <div class="section-header">
-      <span class="badge">About</span>
-      <h2 class="section-title">Why Choose Zenbari</h2>
-    </div>
-
-    <p style="max-width:800px;margin:auto;text-align:center;color:var(--text-secondary);line-height:1.8;">
-      Zenbari builds professional websites that combine modern design, fast performance and business-focused functionality. Every project is created to support long-term growth and provide a strong foundation for digital marketing.
-    </p>
-
-  </div>
-</section>
-
-
-<section class="cta-section" id="quote">
-  <div class="container">
-
-    <div class="glass-card cta-banner-card">
-
-      <div class="cta-banner-content">
-
-        <h2 class="cta-title">
-          Request a Free Website Consultation
-        </h2>
-
-        <p class="cta-description">
-          Tell me about your project and I'll recommend the best website solution for your business.
-        </p>
-
-        <form class="scheduler-form">
-
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-input">
+          <div class="hero-ctas">
+            <a href="#book" class="btn btn-primary">Book a Website Strategy Session</a>
+            <a href="#framework" class="btn btn-secondary">See How We Build</a>
           </div>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-input">
+        </div>
+
+        <div class="hero-visual-wrapper" aria-label="Website build process visualisation">
+          <div class="wdev-browser" aria-hidden="true">
+            <div class="wdev-browser-bar">
+              <span class="wdev-dot"></span>
+              <span class="wdev-dot"></span>
+              <span class="wdev-dot"></span>
+              <div class="wdev-url">yourbusiness.co.uk</div>
+            </div>
+            <div class="wdev-browser-body">
+
+              <div class="wdev-site-nav">
+                <div class="wdev-nav-left">
+                  <span class="wdev-nav-logo"></span>
+                  <span class="wdev-nav-link">Services</span>
+                  <span class="wdev-nav-link">Work</span>
+                  <span class="wdev-nav-link">Contact</span>
+                </div>
+                <span class="wdev-nav-cta">Get Started</span>
+              </div>
+
+              <div class="wdev-headline">
+                <div class="wdev-heading-line">Grow Your Business Online</div>
+                <div class="wdev-sub-line">Fast, professional, built to convert.</div>
+              </div>
+
+              <div class="wdev-cta-wrap">
+                <span class="wdev-cta-btn">Book a Consultation</span>
+              </div>
+
+              <div class="wdev-content-row">
+                <div class="wdev-content-text">
+                  <p>We help ambitious businesses attract more customers through fast, conversion-focused design.</p>
+                </div>
+                <div class="wdev-image-placeholder">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M21 15l-5-5L5 21"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="wdev-features-row">
+                <div class="wdev-feature-card">
+                  <span class="wdev-feature-icon"></span>
+                  <div class="wdev-feature-label">Fast Performance</div>
+                </div>
+                <div class="wdev-feature-card">
+                  <span class="wdev-feature-icon"></span>
+                  <div class="wdev-feature-label">Secure &amp; Reliable</div>
+                </div>
+                <div class="wdev-feature-card">
+                  <span class="wdev-feature-icon"></span>
+                  <div class="wdev-feature-label">Mobile Optimised</div>
+                </div>
+              </div>
+
+              <div class="wdev-status-row">
+                <span class="wdev-seo-badge">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  SEO Ready
+                </span>
+                <span class="wdev-perf-badge">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  98 Performance
+                </span>
+                <span class="wdev-live-badge">
+                  <span class="wdev-live-dot"></span>
+                  Live
+                </span>
+              </div>
+
+            </div>
           </div>
-
-          <div class="form-group">
-            <label>Business Website (Optional)</label>
-            <input type="text" class="form-input">
-          </div>
-
-          <button class="btn btn-primary">
-            Request Consultation
-          </button>
-
-        </form>
+        </div>
 
       </div>
+    </section>
 
+    <!-- WHY WEBSITES FAIL TO GENERATE ENQUIRIES -->
+    <section class="about-section" id="why-fail">
+      <div class="container about-grid">
+
+        <div class="about-editorial-text">
+          <span class="badge">Common Pitfalls</span>
+          <h2 class="section-title" style="font-size:2.3rem;margin-bottom:24px;">Why Most Business Websites Don't Generate Enquiries</h2>
+          <p>
+            Most businesses don't have a website problem — they have a performance problem. The site exists, looks reasonable, and still fails to bring in enquiries.
+          </p>
+          <p>
+            The reasons are rarely technical. They're almost always about speed, experience, trust and how clearly the site guides a visitor toward taking action.
+          </p>
+        </div>
+
+        <div>
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:24px;">
+
+            <li style="display:flex;gap:16px;align-items:flex-start;">
+              <div class="service-icon-wrapper" style="flex-shrink:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Slow Performance</h3>
+                <p class="service-description" style="font-size:0.92rem;">Every extra second of load time pushes visitors away before they even see what you offer.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:16px;align-items:flex-start;">
+              <div class="service-icon-wrapper" style="flex-shrink:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Poor User Experience</h3>
+                <p class="service-description" style="font-size:0.92rem;">Confusing navigation and cluttered layouts make it hard for visitors to find what they came for.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:16px;align-items:flex-start;">
+              <div class="service-icon-wrapper" style="flex-shrink:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Weak Messaging</h3>
+                <p class="service-description" style="font-size:0.92rem;">Generic, vague copy fails to explain why a visitor should choose your business over anyone else.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:16px;align-items:flex-start;">
+              <div class="service-icon-wrapper" style="flex-shrink:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Lack Of Trust</h3>
+                <p class="service-description" style="font-size:0.92rem;">Without clear signals of credibility, visitors hesitate to make contact or hand over their details.</p>
+              </div>
+            </li>
+
+            <li style="display:flex;gap:16px;align-items:flex-start;">
+              <div class="service-icon-wrapper" style="flex-shrink:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                  <line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title" style="font-size:1.1rem;margin-bottom:6px;">Poor Conversion Paths</h3>
+                <p class="service-description" style="font-size:0.92rem;">Without a clear next step, even interested visitors leave without enquiring.</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WEBSITES BUILT FOR GROWTH -->
+    <section class="services-section" id="services">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Built For Growth</span>
+          <h2 class="section-title">Websites Built For Growth, Not Just Looks</h2>
+          <p class="section-subtitle">
+            Every element of your website should work toward one goal — growing your business.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                <rect x="9" y="3" width="6" height="4" rx="1"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Lead Generation</h3>
+            <p class="service-description">
+              Clear calls to action and frictionless enquiry paths designed to turn visitors into genuine business leads.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Credibility & Trust</h3>
+            <p class="service-description">
+              Professional design and clear signals of trust that reassure visitors your business is legitimate and capable.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Scalability</h3>
+            <p class="service-description">
+              A foundation built to grow with your business, without needing a costly rebuild every few years.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">SEO Readiness</h3>
+            <p class="service-description">
+              Clean code and structure built to support search visibility from the moment your site goes live.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Readiness</h3>
+            <p class="service-description">
+              Content and structure prepared for how AI-powered search tools read and represent your business.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Long-Term Performance</h3>
+            <p class="service-description">
+              Fast-loading, well-maintained websites that keep performing as your business and traffic grow.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WEBSITE DEVELOPMENT FRAMEWORK (vertical timeline) -->
+    <section class="process-section" id="framework">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Process</span>
+          <h2 class="section-title">The Website Development Framework</h2>
+          <p class="section-subtitle">
+            A clear, structured journey from first conversation to a website that performs.
+          </p>
+        </div>
+
+        <ol class="wdev-timeline">
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">01</span>
+            <div class="wdev-timeline-body">
+              <h3>Discovery</h3>
+              <p>We learn your business, customers and goals to understand what your website actually needs to achieve.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">02</span>
+            <div class="wdev-timeline-body">
+              <h3>Strategy</h3>
+              <p>We map out site structure, content priorities and conversion paths aligned with your business objectives.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">03</span>
+            <div class="wdev-timeline-body">
+              <h3>Design</h3>
+              <p>We design a clean, professional layout that reflects your brand and guides visitors toward taking action.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">04</span>
+            <div class="wdev-timeline-body">
+              <h3>Development</h3>
+              <p>We build your website with clean, efficient code focused on speed, structure and reliability.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">05</span>
+            <div class="wdev-timeline-body">
+              <h3>Optimisation</h3>
+              <p>We refine performance, accessibility and on-page SEO before anything goes live.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">06</span>
+            <div class="wdev-timeline-body">
+              <h3>Launch</h3>
+              <p>We launch your website with thorough testing across devices, browsers and real-world conditions.</p>
+            </div>
+          </li>
+
+          <li class="wdev-timeline-item">
+            <span class="wdev-timeline-num">07</span>
+            <div class="wdev-timeline-body">
+              <h3>Continuous Improvement</h3>
+              <p>We monitor performance and support ongoing updates so your website keeps working as hard as you do.</p>
+            </div>
+          </li>
+
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- PREMIUM FEATURES, EXPLAINED BY BUSINESS VALUE -->
+    <section class="why-us-section" id="features">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">What's Included</span>
+          <h2 class="section-title">Premium Features, Explained By Business Value</h2>
+          <p class="section-subtitle">
+            Every feature exists for a reason — here's what it means for your business.
+          </p>
+        </div>
+
+        <div class="why-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Performance</h3>
+            <p class="service-description">
+              Fast-loading pages keep visitors engaged and reduce the number of people who leave before your site even loads.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Accessibility</h3>
+            <p class="service-description">
+              An accessible website reaches more visitors and reflects well on your business's professionalism.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Security</h3>
+            <p class="service-description">
+              A secure website protects your business and your customers, and builds confidence from the first visit.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Responsive Design</h3>
+            <p class="service-description">
+              A website that works perfectly on any device means you never lose a visitor due to a broken layout.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">SEO Foundations</h3>
+            <p class="service-description">
+              Technical foundations built to support search visibility, not fight against it.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Search Readiness</h3>
+            <p class="service-description">
+              Structured content prepared to be understood and represented accurately by AI-powered search tools.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Conversion Optimisation</h3>
+            <p class="service-description">
+              Every layout decision is made with one goal — turning visitors into enquiries and customers.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M23 4v6h-6"/>
+                <path d="M1 20v-6h6"/>
+                <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Scalability</h3>
+            <p class="service-description">
+              A website built to grow alongside your business, without starting from scratch later.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY ZENBARI (philosophy) -->
+    <section class="about-section" id="why">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Philosophy</span>
+          <h2 class="section-title">Fast, Lightweight, Hand-Coded — By Design</h2>
+        </div>
+
+        <p style="max-width:800px;margin:0 auto 40px;text-align:center;color:var(--text-secondary);line-height:1.8;">
+          We build websites the way we'd want ours built — fast, clean and free of unnecessary bloat. No bloated page builders, no unnecessary plugins, no complexity that slows your business down. Just carefully hand-coded websites engineered for marketing success.
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+          <span class="badge">Fast &amp; Lightweight</span>
+          <span class="badge">Hand-Coded, Not Templated</span>
+          <span class="badge">Built For Marketing Success</span>
+          <span class="badge">No Unnecessary Complexity</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="case-study-section" id="industries">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Industries</span>
+          <h2 class="section-title">Websites Built For Your Industry</h2>
+          <p class="section-subtitle">
+            Every industry sells differently — your website should reflect that.
+          </p>
+        </div>
+
+        <div class="case-study-grid">
+
+          <div class="glass-card">
+            <h3>E-Commerce</h3>
+            <ul>
+              <li>Fast, mobile-optimised product pages that keep shoppers engaged.</li>
+              <li>Clear paths from browsing to checkout.</li>
+              <li>Built to scale as your product range grows.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Professional Services</h3>
+            <ul>
+              <li>Clear service pages that build credibility with potential clients.</li>
+              <li>Enquiry forms designed to capture genuine leads.</li>
+              <li>Content structured to demonstrate expertise.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Healthcare</h3>
+            <ul>
+              <li>Clear, trustworthy information that reassures patients.</li>
+              <li>Accessible design that works for every visitor.</li>
+              <li>Simple booking or enquiry paths.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Hospitality</h3>
+            <ul>
+              <li>Visually engaging pages that showcase your venue.</li>
+              <li>Fast-loading pages, even on mobile networks.</li>
+              <li>Clear booking or enquiry calls to action.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Property &amp; Real Estate</h3>
+            <ul>
+              <li>Fast, media-rich listings that load without lag.</li>
+              <li>Clear enquiry paths for every property.</li>
+              <li>Built to handle growing property portfolios.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Local Trades &amp; Services</h3>
+            <ul>
+              <li>Clear service areas and offerings that build local trust.</li>
+              <li>Simple, direct paths to enquire or call.</li>
+              <li>Fast-loading pages for on-the-go searches.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="glass-card faq-item">
+            <h3>How long does it take to build a website?</h3>
+            <p>Timelines vary by project scope, but most business websites are completed within a few weeks once content and requirements are confirmed.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Will my website work well on mobile?</h3>
+            <p>Yes. Every website is built responsively from the ground up, so it performs well on phones, tablets and desktops alike.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Do you build on WordPress or page builders?</h3>
+            <p>No. We hand-code websites for speed, reliability and long-term maintainability, avoiding the bloat that often comes with page builders.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Will my website be optimised for search engines?</h3>
+            <p>Yes. Every website is built with clean structure, fast performance and on-page SEO foundations in place from launch.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Can you help with content and copywriting?</h3>
+            <p>Yes, we can support content development to ensure your messaging is clear and conversion-focused.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>What happens after my website launches?</h3>
+            <p>We offer ongoing support and updates to keep your website performing as your business grows.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA + ENQUIRY FORM -->
+    <section class="cta-section" id="book">
+      <div class="container">
+        <div class="glass-card cta-banner-card">
+          <div class="cta-banner-content">
+            <h2 class="cta-title">Ready For A Website That <br><span class="gradient-text">Grows Your Business?</span></h2>
+            <p class="cta-description">
+              Book a free Website Strategy Session and we'll show you exactly what your website needs to start generating real business results.
+            </p>
+
+            <div class="scheduler-widget">
+              <h3 class="widget-title">Book Your Free Website Strategy Session</h3>
+
+              <form class="scheduler-form" id="bookingForm">
+                <div class="form-group">
+                  <label for="bookingName">Full Name</label>
+                  <input type="text" id="bookingName" class="form-input" placeholder="e.g. Alexander Cole" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="bookingEmail">Business Email</label>
+                  <input type="email" id="bookingEmail" class="form-input" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookingIndustry">Industry</label>
+                    <select id="bookingIndustry" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Industry</option>
+                      <option value="ecommerce">E-Commerce Brand</option>
+                      <option value="saas">SaaS / Tech Startup</option>
+                      <option value="b2b">B2B Professional Services</option>
+                      <option value="personal-brand">Personal Brand</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bookingBudget">Project Budget</label>
+                    <select id="bookingBudget" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Budget Range</option>
+                      <option value="sub-1k">Under $1,000</option>
+                      <option value="mid-scale">$1,000 - $5,000</option>
+                      <option value="high-scale">$5,000 - $15,000</option>
+                      <option value="enterprise">$15,000+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit-btn">Book My Strategy Session</button>
+              </form>
+
+              <div class="success-overlay">
+                <div class="success-icon">&#10004;</div>
+                <h4>Strategy Session Requested!</h4>
+                <p>We're reviewing your business details. One of our senior strategists will email you within 24 hours to arrange your session.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
+        <p>Helping businesses grow through SEO, Meta Ads, Google Ads, Website Development and Content Marketing.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com" class="social-btn" aria-label="Zenbari Growth LinkedIn" target="_blank">&#9553;</a>
+          <a href="https://twitter.com" class="social-btn" aria-label="Zenbari Growth Twitter" target="_blank">&#9590;</a>
+          <a href="https://instagram.com" class="social-btn" aria-label="Zenbari Growth Instagram" target="_blank">&#9673;</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul class="footer-links">
+          <li><a href="seo-services.html">SEO</a></li>
+          <li><a href="google-ads.html">Google Ads</a></li>
+          <li><a href="meta-ads.html">Meta Ads</a></li>
+          <li><a href="website-development.html">Website Development</a></li>
+          <li><a href="content-marketing.html">Content Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-box">
+        <h5>Get Started</h5>
+        <p>Ready to grow your business online? Let's build a strategy together.</p>
+        <a href="#book" class="btn btn-primary">Book Consultation</a>
+      </div>
     </div>
 
-  </div>
-</section>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 Zenbari Digital Growth. All Rights Reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
 
-<script src="js/app.js"></script>
-
+  <script src="js/app.js"></script>
 </body>
 </html>
