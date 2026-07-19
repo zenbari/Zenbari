@@ -6,213 +6,902 @@
 
   <title>Content Marketing | Zenbari Digital Growth</title>
 
-  <meta name="description" content="Content Marketing services that help businesses build authority, attract qualified audiences and generate sustainable long-term growth.">
+  <meta name="description" content="Content marketing services from Zenbari Digital Growth — content that builds trust, educates customers, supports SEO and AI search visibility, and generates long-term business growth.">
+
+  <meta name="keywords" content="content marketing, content strategy, blog content, SEO content, AI search content, thought leadership, lead generation content">
+
+  <meta property="og:title" content="Content Marketing | Zenbari Digital Growth">
+  <meta property="og:description" content="Content built to build trust, educate customers and generate long-term business growth — not just fill a publishing calendar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.zenbari.co.uk/content-marketing.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Page-scoped styles for this page's two bespoke visuals: the hero "content pipeline dashboard"
+       and the horizontal framework stepper. Kept out of css/styles.css since only this file may be
+       modified for this page. Hero animation is opacity/transform only (GPU-friendly) and respects
+       prefers-reduced-motion; the stepper is static (no animation). -->
+  <style>
+    /* ---------- HERO: content pipeline dashboard - Idea -> Content Creation -> Publish ->
+       Distribution -> Audience Engagement -> Business Growth. Simplified to 6 larger, clearer
+       stages (down from 7) with generous spacing, so the sequence reads at a glance. Each stage
+       shares one 12s cycle: rises in at its own moment (0-56%, landing the last piece around 7s),
+       then ALL hold together fully visible (~3.8s pause), then ALL fade out together at 88%-100%
+       before the loop restarts. Opacity + transform only; see reduced-motion below. ---------- */
+    /* Cursor-tracked tilt + ambient light: --cmk-tilt-x/y and --cmk-mx/my are read here but only
+       ever WRITTEN by the small mousemove script near the end of the file (skipped entirely under
+       prefers-reduced-motion, so these stay at their neutral defaults and the card simply doesn't
+       tilt - lift/glow still work via plain :hover for a graceful, still-responsive fallback). */
+    .cmk-dash {
+      --cmk-tilt-x: 0deg; --cmk-tilt-y: 0deg; --cmk-mx: 50%; --cmk-my: 50%;
+      position: relative; width: 100%; max-width: 460px; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border-color); background: var(--bg-tertiary);
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+      transform: perspective(900px) rotateX(var(--cmk-tilt-x)) rotateY(var(--cmk-tilt-y));
+      transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .5s ease, border-color .5s ease;
+      will-change: transform;
+    }
+    /* Soft ambient light that follows the cursor - a radial gradient positioned via the same
+       JS-driven custom properties, purely decorative and inert to pointer events. */
+    .cmk-dash::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: radial-gradient(circle 240px at var(--cmk-mx) var(--cmk-my), rgba(255,255,255,.07), transparent 70%);
+      opacity: 0; transition: opacity .4s ease;
+    }
+    /* Hover: gentle lift + the live cursor tilt + soft glow + brighter frame border */
+    .cmk-dash:hover {
+      transform: perspective(900px) rotateX(var(--cmk-tilt-x)) rotateY(var(--cmk-tilt-y)) translateY(-6px);
+      box-shadow: 0 35px 70px rgba(0,0,0,.4), 0 0 46px rgba(var(--accent-primary-rgb), .18);
+      border-color: var(--border-color-hover);
+    }
+    .cmk-dash:hover::before { opacity: 1; }
+    /* Cards gain a little depth on hover - border/shadow only, never transform, since these
+       elements already carry their own looping entrance animation on transform. */
+    .cmk-dash:hover .cmk-content-card,
+    .cmk-dash:hover .cmk-channel-chip {
+      border-color: var(--border-color-hover);
+      box-shadow: 0 6px 18px rgba(0,0,0,.28);
+    }
+    .cmk-dash:hover .cmk-published {
+      transform: scale(1.08);
+      box-shadow: 0 0 14px rgba(16,185,129,.4);
+    }
+    .cmk-dash:hover .cmk-growth-icon { animation: cmk-pulse-once .7s ease; }
+    @keyframes cmk-pulse-once { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+
+    .cmk-dash-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 14px 18px;
+      background: rgba(255,255,255,.03); border-bottom: 1px solid var(--border-color);
+    }
+    .cmk-dash-title { font-family: var(--font-headings); font-size: .72rem; font-weight: 600; color: var(--text-secondary); }
+    .cmk-dash-status { display: flex; align-items: center; gap: 5px; font-size: .6rem; color: #10b981; font-weight: 600; }
+    .cmk-dash-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+    .cmk-dash-body { position: relative; height: 330px; padding: 26px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+
+    .cmk-stage-idea { display: flex; align-items: center; gap: 12px; }
+    .cmk-idea-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(var(--accent-primary-rgb), .18); color: var(--accent-primary);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cmk-idea-label { font-family: var(--font-headings); font-size: .8rem; font-weight: 700; color: var(--text-primary); }
+
+    .cmk-content-card { padding: 12px 14px; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border-color); }
+    .cmk-card-title { display: flex; align-items: center; gap: 7px; font-family: var(--font-headings); font-size: .68rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .cmk-card-line { height: 7px; border-radius: 3px; background: rgba(255,255,255,.08); margin-bottom: 5px; }
+    .cmk-card-line:last-child { margin-bottom: 0; }
+
+    /* Publish: wrap carries the entrance animation, badge itself carries the hover emphasis -
+       an element can't have transform driven by both a looping animation and :hover at once. */
+    .cmk-publish-wrap { display: flex; }
+    .cmk-published {
+      display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-headings);
+      font-size: .66rem; font-weight: 600; padding: 5px 12px; border-radius: 12px;
+      background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); color: #10b981;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .cmk-channels-row { display: flex; gap: 10px; }
+    .cmk-channel-chip { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 9px 6px; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border-color); }
+    .cmk-channel-chip svg { color: var(--accent-secondary); }
+    .cmk-channel-label { font-size: .58rem; font-weight: 600; color: var(--text-secondary); }
+
+    .cmk-audience-row { display: flex; align-items: center; justify-content: space-between; }
+    .cmk-audience-left { display: flex; align-items: center; gap: 8px; }
+    .cmk-audience-dots { display: flex; }
+    .cmk-audience-dot { width: 16px; height: 16px; border-radius: 50%; background: rgba(var(--accent-primary-rgb), .4); border: 2px solid var(--bg-tertiary); margin-left: -6px; }
+    .cmk-audience-dot:first-child { margin-left: 0; }
+    .cmk-audience-label { font-size: .62rem; color: var(--text-secondary); font-weight: 500; }
+    .cmk-engagement-label { display: flex; align-items: center; gap: 5px; font-size: .62rem; color: var(--text-secondary); font-weight: 500; }
+
+    .cmk-growth-row {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px;
+      background: rgba(var(--accent-primary-rgb), .12); border: 1px solid rgba(var(--accent-primary-rgb), .3);
+      box-shadow: 0 0 16px rgba(var(--accent-primary-rgb), .2);
+    }
+    .cmk-growth-icon { color: var(--accent-primary); display: flex; }
+    .cmk-growth-label { font-family: var(--font-headings); font-size: .72rem; font-weight: 700; color: var(--accent-primary); }
+
+    .cmk-stage-idea    { animation: cmk-el-1 12s ease-in-out infinite; }
+    .cmk-content-card  { animation: cmk-el-2 12s ease-in-out infinite; }
+    .cmk-publish-wrap  { animation: cmk-el-3 12s ease-in-out infinite; }
+    .cmk-channels-row  { animation: cmk-el-4 12s ease-in-out infinite; }
+    .cmk-audience-row  { animation: cmk-el-5 12s ease-in-out infinite; }
+    .cmk-growth-row    { animation: cmk-el-6 12s ease-in-out infinite; }
+
+    @keyframes cmk-el-1 { 0%       { opacity: 0; transform: translateY(8px); } 6%,  88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+    @keyframes cmk-el-2 { 0%, 11%  { opacity: 0; transform: translateY(8px); } 17%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+    @keyframes cmk-el-3 { 0%, 22%  { opacity: 0; transform: translateY(8px); } 28%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+    @keyframes cmk-el-4 { 0%, 33%  { opacity: 0; transform: translateY(8px); } 39%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+    @keyframes cmk-el-5 { 0%, 44%  { opacity: 0; transform: translateY(8px); } 50%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+    @keyframes cmk-el-6 { 0%, 56%  { opacity: 0; transform: translateY(8px) scale(.96); } 62%, 88% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(8px) scale(.96); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cmk-stage-idea, .cmk-content-card, .cmk-publish-wrap, .cmk-channels-row,
+      .cmk-audience-row, .cmk-growth-row {
+        animation: none !important; opacity: 1 !important; transform: none !important;
+      }
+      .cmk-dash:hover { transform: none; }
+      .cmk-dash:hover .cmk-growth-icon { animation: none !important; }
+    }
+
+    /* ---------- FRAMEWORK: horizontal connected stepper (static, no animation) ---------- */
+    .cmk-stepper { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 20px; margin-top: 60px; position: relative; }
+    .cmk-step { width: 150px; text-align: center; }
+    .cmk-step-num {
+      width: 36px; height: 36px; margin: 0 auto 14px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-headings); font-weight: 700; font-size: .82rem; color: var(--accent-primary);
+      position: relative;
+    }
+    .cmk-step-num::after {
+      content: ''; position: absolute; top: 50%; left: 100%; width: 40px; height: 1px;
+      background: var(--border-color); transform: translateY(-50%);
+    }
+    .cmk-step:last-child .cmk-step-num::after { display: none; }
+    .cmk-step h3 { font-size: 1rem; margin-bottom: 8px; font-family: var(--font-headings); font-weight: 700; }
+    .cmk-step p { color: var(--text-secondary); font-size: .88rem; line-height: 1.6; }
+  </style>
 </head>
+
 <body>
 
-<!-- CONTENT MARKETING PAGE -->
-
-<section class="hero-section">
-  <div class="container hero-grid">
-
-    <div class="hero-content">
-
-      <span class="badge">
-        UK Content Marketing
-      </span>
-
-      <h1 class="hero-title">
-        Content Marketing That Builds
-        <span class="gradient-text">Trust, Authority & Growth</span>
-      </h1>
-
-      <p class="hero-description">
-        Build meaningful relationships with your audience through valuable content that educates, inspires and converts. Zenbari creates content strategies designed to increase visibility, strengthen your brand and drive long-term business growth.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="#quote" class="btn btn-primary">
-          Request Content Strategy
-        </a>
-
-        <a href="#services" class="btn btn-secondary">
-          View Services
-        </a>
-      </div>
-
-    </div>
-
+  <div class="background-canvas-container" aria-hidden="true">
+    <div class="ambient-orb orb-violet"></div>
+    <div class="ambient-orb orb-cyan"></div>
   </div>
-</section>
 
+  <header>
+    <div class="container nav-container">
 
-<section class="services-section" id="services">
-  <div class="container">
+      <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
 
-    <div class="section-header">
-      <span class="badge">Content Marketing</span>
-      <h2 class="section-title">What We Deliver</h2>
-      <p class="section-subtitle">
-        Strategic content designed to attract your ideal audience, build credibility and support every stage of the customer journey.
-      </p>
-    </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#framework" class="nav-link">Framework</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#book" class="btn btn-secondary" style="padding:10px 20px;font-size:.85rem;">Book a Content Strategy Session</a></li>
+        </ul>
+      </nav>
 
-    <div class="services-grid">
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Content Strategy</h3>
-        <p class="service-description">
-          Build a clear roadmap that aligns your content with business objectives, customer intent and long-term growth.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Website Copywriting</h3>
-        <p class="service-description">
-          Persuasive website copy that communicates your value, strengthens your brand and encourages visitors to take action.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Blog Content</h3>
-        <p class="service-description">
-          Publish informative articles that educate customers, answer questions and position your business as an industry authority.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Content Optimisation</h3>
-        <p class="service-description">
-          Improve existing content to increase engagement, readability and long-term performance across digital channels.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Content Planning</h3>
-        <p class="service-description">
-          Develop structured publishing calendars that keep your marketing consistent and aligned with business goals.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3 class="service-title">Thought Leadership</h3>
-        <p class="service-description">
-          Create authoritative content that builds trust, demonstrates expertise and differentiates your business from competitors.
-        </p>
-      </div>
+      <button class="burger-menu" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
 
     </div>
+  </header>
 
-  </div>
-</section>
+  <main>
 
+    <!-- HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
 
-<section class="process-section">
-  <div class="container">
+        <div class="hero-content">
 
-    <div class="section-header">
-      <span class="badge">Process</span>
-      <h2 class="section-title">Our Content Marketing Process</h2>
-    </div>
+          <span class="badge">Content-Led Growth</span>
 
-    <div class="services-grid">
+          <h1 class="hero-title">
+            Great Content Builds Trust
+            <span class="gradient-text">Long Before The Sales Conversation</span>
+          </h1>
 
-      <div class="glass-card service-card">
-        <h3>1. Research</h3>
-        <p class="service-description">
-          Understand your business, audience, competitors and objectives before creating a strategic content plan.
-        </p>
-      </div>
+          <p class="hero-description">
+            Content marketing isn't about publishing more — it's about building trust, educating customers and staying visible long before someone is ready to buy. Zenbari creates content strategies designed for long-term business growth, not just deliverables.
+          </p>
 
-      <div class="glass-card service-card">
-        <h3>2. Strategy</h3>
-        <p class="service-description">
-          Develop a content strategy that aligns with your customer journey and supports measurable business growth.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>3. Creation</h3>
-        <p class="service-description">
-          Produce valuable, engaging and high-quality content tailored to your audience and business goals.
-        </p>
-      </div>
-
-      <div class="glass-card service-card">
-        <h3>4. Optimisation</h3>
-        <p class="service-description">
-          Continuously refine and improve content performance based on user engagement and business outcomes.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<section class="about-section">
-  <div class="container">
-
-    <div class="section-header">
-      <span class="badge">Why Zenbari</span>
-      <h2 class="section-title">Content That Creates Long-Term Value</h2>
-    </div>
-
-    <p style="max-width:800px;margin:auto;text-align:center;color:var(--text-secondary);line-height:1.8;">
-      At Zenbari, content marketing is more than publishing articles. Every piece of content is created with a clear purpose—to educate your audience, strengthen your brand, build trust and support long-term business growth. Our approach combines strategy, creativity and consistency to help businesses become the trusted choice within their industry.
-    </p>
-
-  </div>
-</section>
-
-
-<section class="cta-section" id="quote">
-  <div class="container">
-
-    <div class="glass-card cta-banner-card">
-
-      <div class="cta-banner-content">
-
-        <h2 class="cta-title">
-          Request Your Free Content Strategy Consultation
-        </h2>
-
-        <p class="cta-description">
-          Let's discuss your business, understand your goals and create a content marketing strategy that attracts the right audience and delivers measurable long-term results.
-        </p>
-
-        <form class="scheduler-form">
-
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-input" placeholder="Your Name">
+          <div class="hero-ctas">
+            <a href="#book" class="btn btn-primary">Book a Content Strategy Session</a>
+            <a href="#framework" class="btn btn-secondary">See The Framework</a>
           </div>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-input" placeholder="Your Email">
+        </div>
+
+        <div class="hero-visual-wrapper" aria-label="Content publishing pipeline visualisation">
+          <div class="cmk-dash" aria-hidden="true">
+            <div class="cmk-dash-header">
+              <span class="cmk-dash-title">Content Pipeline</span>
+              <span class="cmk-dash-status"><span class="cmk-dash-dot"></span>Active</span>
+            </div>
+            <div class="cmk-dash-body">
+
+              <div class="cmk-stage-idea">
+                <span class="cmk-idea-icon">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/>
+                  </svg>
+                </span>
+                <span class="cmk-idea-label">New Idea</span>
+              </div>
+
+              <div class="cmk-content-card">
+                <div class="cmk-card-title">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                  10 Ways To Grow Online
+                </div>
+                <div class="cmk-card-line" style="width:90%;"></div>
+                <div class="cmk-card-line" style="width:70%;"></div>
+              </div>
+
+              <div class="cmk-publish-wrap">
+                <span class="cmk-published">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                  Published
+                </span>
+              </div>
+
+              <div class="cmk-channels-row">
+                <div class="cmk-channel-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span class="cmk-channel-label">Blog</span>
+                </div>
+                <div class="cmk-channel-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  <span class="cmk-channel-label">Social</span>
+                </div>
+                <div class="cmk-channel-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <span class="cmk-channel-label">Search</span>
+                </div>
+              </div>
+
+              <div class="cmk-audience-row">
+                <div class="cmk-audience-left">
+                  <div class="cmk-audience-dots">
+                    <span class="cmk-audience-dot"></span>
+                    <span class="cmk-audience-dot"></span>
+                    <span class="cmk-audience-dot"></span>
+                    <span class="cmk-audience-dot"></span>
+                  </div>
+                  <span class="cmk-audience-label">Growing Audience</span>
+                </div>
+                <span class="cmk-engagement-label">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 000-7.8z"/></svg>
+                  High Engagement
+                </span>
+              </div>
+
+              <div class="cmk-growth-row">
+                <span class="cmk-growth-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </span>
+                <span class="cmk-growth-label">Business Growth</span>
+              </div>
+
+            </div>
           </div>
-
-          <div class="form-group">
-            <label>Website (Optional)</label>
-            <input type="text" class="form-input" placeholder="https://yourwebsite.com">
-          </div>
-
-          <button class="btn btn-primary">
-            Request Strategy
-          </button>
-
-        </form>
+        </div>
 
       </div>
+    </section>
 
+    <!-- WHY BUSINESSES STRUGGLE WHEN THEY ONLY SELL -->
+    <section class="why-us-section" id="why-sell">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">The Problem</span>
+          <h2 class="section-title">Why Businesses Struggle When They Only Sell</h2>
+          <p class="section-subtitle">
+            Selling without educating asks for trust you haven't earned yet.
+          </p>
+        </div>
+
+        <div class="why-grid" style="position:relative;max-width:900px;margin:0 auto;">
+
+          <div class="glass-card" style="padding:36px;">
+            <span class="badge" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:var(--text-muted);">Selling Only</span>
+            <ul style="list-style:none;padding:0;margin-top:16px;display:flex;flex-direction:column;gap:14px;">
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">Visitors leave without understanding your value.</li>
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">No trust is built before they're asked to buy.</li>
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">Competitors who educate first win the attention.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card" style="padding:36px;">
+            <span class="badge">Educating First</span>
+            <ul style="list-style:none;padding:0;margin-top:16px;display:flex;flex-direction:column;gap:14px;">
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">Visitors arrive already understanding your value.</li>
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">Trust is built long before any sales conversation.</li>
+              <li style="color:var(--text-secondary);font-size:.95rem;line-height:1.6;">Your business becomes the obvious, trusted choice.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTENT THAT BUILDS TRUST -->
+    <section class="services-section" id="services">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Content That Builds Trust</span>
+          <h2 class="section-title">Content Built To Earn Trust, Not Just Attention</h2>
+          <p class="section-subtitle">
+            Every piece of content should do more than fill a calendar — it should move your business forward.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Authority &amp; Expertise</h3>
+            <p class="service-description">
+              Consistently valuable content positions your business as a knowledgeable, trusted voice in your industry.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Credibility</h3>
+            <p class="service-description">
+              Clear, well-researched content reassures potential customers that your business is capable and trustworthy.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">SEO Support</h3>
+            <p class="service-description">
+              Well-structured content strengthens the topics and keywords your website is found for.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Search Visibility</h3>
+            <p class="service-description">
+              Clear, well-structured content helps AI-powered search tools understand and reference your business accurately.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Customer Education</h3>
+            <p class="service-description">
+              Content that answers real questions helps customers make confident, informed decisions.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Long-Term Lead Generation</h3>
+            <p class="service-description">
+              Content continues attracting and educating potential customers long after it's published.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTENT MARKETING FRAMEWORK (horizontal stepper) -->
+    <section class="process-section" id="framework">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Process</span>
+          <h2 class="section-title">The Content Marketing Framework</h2>
+          <p class="section-subtitle">
+            A structured process that turns ideas into content that performs.
+          </p>
+        </div>
+
+        <div class="cmk-stepper">
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">01</div>
+            <h3>Research</h3>
+            <p>We study your audience, competitors and industry to understand what content will genuinely resonate.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">02</div>
+            <h3>Strategy</h3>
+            <p>We build a content plan aligned with business goals, customer intent and long-term growth.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">03</div>
+            <h3>Creation</h3>
+            <p>We produce clear, valuable content that reflects your expertise and speaks directly to your audience.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">04</div>
+            <h3>Optimisation</h3>
+            <p>We structure content for search engines, AI search tools and genuine readability.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">05</div>
+            <h3>Distribution</h3>
+            <p>We publish and share content across the right channels to reach your audience effectively.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">06</div>
+            <h3>Measurement</h3>
+            <p>We track engagement, traffic and conversions to understand what's actually working.</p>
+          </div>
+
+          <div class="cmk-step">
+            <div class="cmk-step-num">07</div>
+            <h3>Continuous Improvement</h3>
+            <p>We refine strategy and content over time based on real performance data.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW CONTENT SUPPORTS OTHER CHANNELS -->
+    <section class="services-section" id="channels">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Content Connects Everything</span>
+          <h2 class="section-title">Content Powers Every Other Channel</h2>
+          <p class="section-subtitle">
+            Content marketing doesn't work in isolation — it strengthens everything else you do.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">SEO</h3>
+            <p class="service-description">
+              Content gives search engines the pages, structure and relevance needed to rank.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <h3 class="service-title">AI Search Optimisation</h3>
+            <p class="service-description">
+              Clear, well-structured content helps AI-powered tools understand and represent your business.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Social Media</h3>
+            <p class="service-description">
+              Content gives social channels something genuinely valuable to share, not just promotional noise.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Email Marketing</h3>
+            <p class="service-description">
+              Content keeps your audience engaged between purchases, not just during sales messages.
+            </p>
+          </div>
+
+          <div class="glass-card service-card">
+            <div class="service-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Conversion</h3>
+            <p class="service-description">
+              Educational content builds the trust and understanding that turns visitors into customers.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY ZENBARI (comparison table) -->
+    <section class="about-section" id="why">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Our Approach</span>
+          <h2 class="section-title" id="why-heading">Content Created With Purpose, Not Just Volume</h2>
+          <p class="section-subtitle">
+            Every piece of content exists for a reason.
+          </p>
+        </div>
+
+        <div class="glass-card" style="max-width:900px;margin:0 auto;padding:16px 40px;">
+          <div style="overflow-x:auto;">
+            <table aria-labelledby="why-heading" style="width:100%;border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th scope="col" style="text-align:left;padding:16px 12px;font-family:var(--font-headings);color:var(--accent-primary);border-bottom:1px solid var(--border-color);">Our Approach</th>
+                  <th scope="col" style="text-align:left;padding:16px 12px;font-family:var(--font-headings);color:var(--accent-primary);border-bottom:1px solid var(--border-color);">What It Means For You</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Business Objectives First</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Every piece of content is created to support a specific business goal, not just to fill a calendar.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Customer Intent Research</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Content is built around what your customers are actually searching for and asking.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);border-bottom:1px solid var(--border-color);">Measurable Growth Focus</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);">Performance is tracked against real outcomes — traffic, leads and engagement — not vanity metrics.</td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 12px;font-weight:600;color:var(--text-primary);">No Generic Templates</td>
+                  <td style="padding:16px 12px;color:var(--text-secondary);">Every strategy is built around your business, not a one-size-fits-all content formula.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="case-study-section" id="industries">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">Industries</span>
+          <h2 class="section-title">Content Marketing Built For Your Industry</h2>
+          <p class="section-subtitle">
+            Every industry has different questions to answer — your content should reflect that.
+          </p>
+        </div>
+
+        <div class="case-study-grid">
+
+          <div class="glass-card">
+            <h3>E-Commerce</h3>
+            <ul>
+              <li>Product guides and buying content that helps shoppers choose confidently.</li>
+              <li>SEO content that captures search demand for your products.</li>
+              <li>Content that builds repeat-purchase loyalty.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Professional Services</h3>
+            <ul>
+              <li>Educational content that demonstrates expertise to potential clients.</li>
+              <li>Content that answers the questions prospects ask before enquiring.</li>
+              <li>Thought leadership that builds long-term credibility.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Healthcare</h3>
+            <ul>
+              <li>Clear, trustworthy content that reassures patients researching care.</li>
+              <li>Educational content that supports informed decisions.</li>
+              <li>Content structured for accuracy and accessibility.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>SaaS &amp; Technology</h3>
+            <ul>
+              <li>Content that explains complex products in simple terms.</li>
+              <li>Educational content that supports the buying journey.</li>
+              <li>Content built to attract and nurture qualified leads.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Hospitality</h3>
+            <ul>
+              <li>Inspiring content that showcases the experience you offer.</li>
+              <li>Content that answers questions before a booking.</li>
+              <li>Seasonal content aligned with real demand.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Local Businesses</h3>
+            <ul>
+              <li>Locally relevant content that builds community trust.</li>
+              <li>Content that supports local search visibility.</li>
+              <li>Simple, authentic content that reflects your business.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="badge">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="glass-card faq-item">
+            <h3>How is content marketing different from just having a blog?</h3>
+            <p>Content marketing is a structured strategy built around business goals and customer intent, not just regularly publishing blog posts without direction.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How long does content marketing take to work?</h3>
+            <p>Content marketing is a long-term strategy. Most businesses see meaningful traction over three to six months, with results compounding over time.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>Do you write the content yourselves?</h3>
+            <p>Yes, we research, write and structure content ourselves, ensuring it aligns with your strategy, brand and business objectives.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How does content support SEO and AI search?</h3>
+            <p>Well-structured, genuinely useful content gives search engines and AI-powered tools the clarity and relevance they need to understand and recommend your business.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>What types of content do you create?</h3>
+            <p>This depends on your strategy, but commonly includes website content, blog articles, guides and content designed to support email and social channels.</p>
+          </div>
+
+          <div class="glass-card faq-item">
+            <h3>How do you measure content marketing success?</h3>
+            <p>We track meaningful metrics like organic traffic, engagement and lead generation, rather than vanity metrics like page views alone.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA + ENQUIRY FORM -->
+    <section class="cta-section" id="book">
+      <div class="container">
+        <div class="glass-card cta-banner-card">
+          <div class="cta-banner-content">
+            <h2 class="cta-title">Ready To Build Trust <br><span class="gradient-text">Before The Sale?</span></h2>
+            <p class="cta-description">
+              Book a free Content Strategy Session and we'll show you exactly what content your business needs to attract, educate and convert more customers.
+            </p>
+
+            <div class="scheduler-widget">
+              <h3 class="widget-title">Book Your Free Content Strategy Session</h3>
+
+              <form class="scheduler-form" id="bookingForm">
+                <div class="form-group">
+                  <label for="bookingName">Full Name</label>
+                  <input type="text" id="bookingName" class="form-input" placeholder="e.g. Alexander Cole" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="bookingEmail">Business Email</label>
+                  <input type="email" id="bookingEmail" class="form-input" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bookingIndustry">Industry</label>
+                    <select id="bookingIndustry" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Industry</option>
+                      <option value="ecommerce">E-Commerce Brand</option>
+                      <option value="saas">SaaS / Tech Startup</option>
+                      <option value="b2b">B2B Professional Services</option>
+                      <option value="personal-brand">Personal Brand</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bookingBudget">Monthly Content Budget</label>
+                    <select id="bookingBudget" class="form-input" style="background: #000; cursor: pointer;" required>
+                      <option value="" disabled selected>Select Budget Range</option>
+                      <option value="sub-1k">Under $1,000 / mo</option>
+                      <option value="mid-scale">$1,000 - $5,000 / mo</option>
+                      <option value="high-scale">$5,000 - $15,000 / mo</option>
+                      <option value="enterprise">$15,000+ / mo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit-btn">Book My Strategy Session</button>
+              </form>
+
+              <div class="success-overlay">
+                <div class="success-icon">&#10004;</div>
+                <h4>Strategy Session Requested!</h4>
+                <p>We're reviewing your business details. One of our senior content strategists will email you within 24 hours to arrange your session.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZENBARI<span class="logo-dot"></span></a>
+        <p>Helping businesses grow through SEO, Meta Ads, Google Ads, Website Development and Content Marketing.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com" class="social-btn" aria-label="Zenbari Growth LinkedIn" target="_blank">&#9553;</a>
+          <a href="https://twitter.com" class="social-btn" aria-label="Zenbari Growth Twitter" target="_blank">&#9590;</a>
+          <a href="https://instagram.com" class="social-btn" aria-label="Zenbari Growth Instagram" target="_blank">&#9673;</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul class="footer-links">
+          <li><a href="seo-services.html">SEO</a></li>
+          <li><a href="google-ads.html">Google Ads</a></li>
+          <li><a href="meta-ads.html">Meta Ads</a></li>
+          <li><a href="website-development.html">Website Development</a></li>
+          <li><a href="content-marketing.html">Content Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-box">
+        <h5>Get Started</h5>
+        <p>Ready to grow your business online? Let's build a strategy together.</p>
+        <a href="#book" class="btn btn-primary">Book Consultation</a>
+      </div>
     </div>
 
-  </div>
-</section>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 Zenbari Digital Growth. All Rights Reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
 
-<script src="js/app.js"></script>
+  <script src="js/app.js"></script>
 
+  <!-- Page-scoped cursor-tracking for the hero dashboard illustration only. Not added to js/app.js
+       since that file is shared across every page and this behaviour is unique to this hero visual.
+       Skips attaching entirely under prefers-reduced-motion, so the card never tilts for those users -
+       CSS :hover (lift/glow) still applies as a graceful fallback. Batches updates via
+       requestAnimationFrame so mousemove never triggers more than one style write per frame. -->
+  <script>
+    (function () {
+      var dash = document.querySelector('.cmk-dash');
+      if (!dash || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var pending = null, rafId = null;
+
+      function apply() {
+        rafId = null;
+        if (!pending) return;
+        var x = pending.x, y = pending.y;
+        pending = null;
+        dash.style.setProperty('--cmk-tilt-y', ((x - 0.5) * 6).toFixed(2) + 'deg');
+        dash.style.setProperty('--cmk-tilt-x', ((0.5 - y) * 6).toFixed(2) + 'deg');
+        dash.style.setProperty('--cmk-mx', (x * 100).toFixed(1) + '%');
+        dash.style.setProperty('--cmk-my', (y * 100).toFixed(1) + '%');
+      }
+
+      dash.addEventListener('mousemove', function (e) {
+        var rect = dash.getBoundingClientRect();
+        pending = {
+          x: (e.clientX - rect.left) / rect.width,
+          y: (e.clientY - rect.top) / rect.height
+        };
+        if (!rafId) rafId = requestAnimationFrame(apply);
+      });
+
+      dash.addEventListener('mouseleave', function () {
+        dash.style.setProperty('--cmk-tilt-x', '0deg');
+        dash.style.setProperty('--cmk-tilt-y', '0deg');
+        dash.style.setProperty('--cmk-mx', '50%');
+        dash.style.setProperty('--cmk-my', '50%');
+      });
+    })();
+  </script>
 </body>
 </html>
